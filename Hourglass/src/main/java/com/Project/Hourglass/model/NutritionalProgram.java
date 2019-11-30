@@ -2,6 +2,7 @@ package com.Project.Hourglass.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "nutritional_program")
@@ -12,7 +13,13 @@ public class NutritionalProgram extends DayProgram {
     @Column(name = "meals_number", nullable = false)
     private int mealsNumber;
 
+    public NutritionalProgram() {
+    }
 
+    public NutritionalProgram(@NotNull LocalDate day, @NotNull String description, @NotNull int mealsNumber) {
+        super(day, description);
+        this.mealsNumber = mealsNumber;
+    }
 
     public int getMealsNumber() {
         return mealsNumber;

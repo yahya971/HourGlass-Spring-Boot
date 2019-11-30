@@ -34,7 +34,17 @@ public class WeightLossProgram {
     @Lob
     private String objectifs;
 
+    public WeightLossProgram() {
+    }
 
+    public WeightLossProgram(@NotNull String description, @NotNull LocalDate startDate, @NotNull int duration, float rating, byte[] backgroundImage, String objectifs) {
+        this.description = description;
+        this.startDate = startDate;
+        this.duration = duration;
+        this.rating = rating;
+        this.backgroundImage = backgroundImage;
+        this.objectifs = objectifs;
+    }
 
     public long getId() {
         return id;

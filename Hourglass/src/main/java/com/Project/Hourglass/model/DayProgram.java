@@ -23,6 +23,14 @@ public abstract class DayProgram {
     @Column(nullable = false)
     private String description;
 
+    public DayProgram() {
+    }
+
+    public DayProgram(@NotNull LocalDate day, @NotNull String description) {
+        this.day = day;
+        this.description = description;
+    }
+
     public long getId() {
         return id;
     }

@@ -29,6 +29,16 @@ public class Workout {
     private float burnedCalories;
 
 
+    public Workout() {
+    }
+
+    public Workout(@NotNull LocalTime startingHour, @NotNull LocalTime endingHour, String description, String equipment, float burnedCalories) {
+        this.startingHour = startingHour;
+        this.endingHour = endingHour;
+        this.description = description;
+        this.equipment = equipment;
+        this.burnedCalories = burnedCalories;
+    }
 
     public long getId() {
         return id;
