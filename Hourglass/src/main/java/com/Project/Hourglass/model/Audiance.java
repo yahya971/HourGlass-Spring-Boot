@@ -45,6 +45,19 @@ public class Audiance {
     @Column(nullable = false)
     private OverweightCause overweightCause;
 
+    public Audiance() {
+    }
+
+    public Audiance(@NotNull Sex sex, @NotNull float height, @NotNull float objectiveWeight, @NotNull Frame frame, @NotNull FatStorage fatStorage, @NotNull Silhouette silhouette, @NotNull OverweightCause overweightCause) {
+        this.sex = sex;
+        this.height = height;
+        this.objectiveWeight = objectiveWeight;
+        this.frame = frame;
+        this.fatStorage = fatStorage;
+        this.silhouette = silhouette;
+        this.overweightCause = overweightCause;
+    }
+
     public long getId() {
         return id;
     }

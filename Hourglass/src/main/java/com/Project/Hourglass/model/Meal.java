@@ -31,7 +31,17 @@ public class Meal {
     @Lob
     private String ingridentes;
 
+    public Meal() {
+    }
 
+    public Meal(@NotNull LocalTime time, float caloricValue, byte[] photo, @NotNull boolean isTaken, String recipe, String ingridentes) {
+        this.time = time;
+        this.caloricValue = caloricValue;
+        this.photo = photo;
+        this.isTaken = isTaken;
+        this.recipe = recipe;
+        this.ingridentes = ingridentes;
+    }
 
     public long getId() {
         return id;
