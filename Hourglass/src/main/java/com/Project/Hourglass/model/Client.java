@@ -1,9 +1,18 @@
 package com.Project.Hourglass.model;
 
+import com.Project.Hourglass.model.enumeration.FatStorage;
+import com.Project.Hourglass.model.enumeration.Frame;
+import com.Project.Hourglass.model.enumeration.Sex;
+import com.Project.Hourglass.model.enumeration.Silhouette;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
 public class Client extends Person{
 
     @NotNull
@@ -16,18 +25,21 @@ public class Client extends Person{
     private String desiredWeight;
 
     @NotNull
-    private String fatDistribution;
+    @Enumerated(EnumType.STRING)
+    private FatStorage fatDistribution;
 
     @NotNull
-    private String frame;
+    @Enumerated(EnumType.STRING)
+    private Frame frame;
 
     @NotNull
-    private String silhouette;
+    @Enumerated(EnumType.STRING)
+    private Silhouette silhouette;
 
     public Client() {
     }
 
-    public Client(long id, String name, String lastname, String sex, long age, String role, byte[] photo, long height, String currentWeight, String desiredWeight, String fatDistribution, String frame, String silhouette) {
+    public Client(long id, String name, String lastname, Sex sex, long age, String role, byte[] photo, long height, String currentWeight, String desiredWeight, FatStorage fatDistribution, Frame frame, Silhouette silhouette) {
         super(id, name, lastname, sex, age, role, photo);
         this.height = height;
         this.currentWeight = currentWeight;
@@ -61,27 +73,27 @@ public class Client extends Person{
         this.desiredWeight = desiredWeight;
     }
 
-    public String getFatDistribution() {
+    public FatStorage getFatDistribution() {
         return fatDistribution;
     }
 
-    public void setFatDistribution(String fatDistribution) {
+    public void setFatDistribution(FatStorage fatDistribution) {
         this.fatDistribution = fatDistribution;
     }
 
-    public String getFrame() {
+    public Frame getFrame() {
         return frame;
     }
 
-    public void setFrame(String frame) {
+    public void setFrame(Frame frame) {
         this.frame = frame;
     }
 
-    public String getSilhouette() {
+    public Silhouette getSilhouette() {
         return silhouette;
     }
 
-    public void setSilhouette(String silhouette) {
+    public void setSilhouette(Silhouette silhouette) {
         this.silhouette = silhouette;
     }
 }

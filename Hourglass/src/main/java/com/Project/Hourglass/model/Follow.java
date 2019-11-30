@@ -1,11 +1,9 @@
 package com.Project.Hourglass.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Follow {
 
     @NotNull

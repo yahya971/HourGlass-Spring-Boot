@@ -1,9 +1,13 @@
 package com.Project.Hourglass.model;
 
+import com.Project.Hourglass.model.enumeration.Sex;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "person")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person {
 
     @Id
@@ -17,23 +21,21 @@ public abstract class Person {
     private String lastname;
 
     @NotNull
-    private String sex;
+    private Sex sex;
 
-    @NotNull
     private long age;
 
     @NotNull
     private String role;
 
     @Lob
-    @NotNull
     private byte[] photo;
 
     public Person (){
 
     }
 
-    public Person(long id,String name,String lastname,String sex,long age,String role,byte[] photo){
+    public Person(long id,String name,String lastname,Sex sex,long age,String role,byte[] photo){
         this.id=id;
         this.name=name;
         this.lastname=lastname;
@@ -67,11 +69,11 @@ public abstract class Person {
         this.lastname = lastname;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 
