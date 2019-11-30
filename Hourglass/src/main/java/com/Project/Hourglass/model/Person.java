@@ -12,6 +12,7 @@ public abstract class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
     private long id;
 
     @NotNull
@@ -61,14 +62,6 @@ public abstract class Person {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastname;
-    }
-
-    public void setLastName(String lastname) {
-        this.lastname = lastname;
-    }
-
     public Sex getSex() {
         return sex;
     }
@@ -100,4 +93,12 @@ public abstract class Person {
     public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
 }

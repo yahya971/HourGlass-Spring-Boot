@@ -7,8 +7,21 @@ import java.time.LocalTime;
 @Entity
 public class Workout {
 
-    @Id
+    public Workout(long id, @NotNull LocalTime startingHour, @NotNull LocalTime endingHour, String description,
+			String equipment, float burnedCalories, Coach coach) {
+		super();
+		this.id = id;
+		this.startingHour = startingHour;
+		this.endingHour = endingHour;
+		this.description = description;
+		this.equipment = equipment;
+		this.burnedCalories = burnedCalories;
+		this.coach = coach;
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="workout_id")
     private long id;
 
     @NotNull
@@ -28,17 +41,15 @@ public class Workout {
 
     private float burnedCalories;
 
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+   	@JoinColumn(name = "coach_id", nullable = false)
+    private Coach coach;
 
     public Workout() {
     }
 
-    public Workout(@NotNull LocalTime startingHour, @NotNull LocalTime endingHour, String description, String equipment, float burnedCalories) {
-        this.startingHour = startingHour;
-        this.endingHour = endingHour;
-        this.description = description;
-        this.equipment = equipment;
-        this.burnedCalories = burnedCalories;
-    }
+
 
     public long getId() {
         return id;
@@ -87,4 +98,12 @@ public class Workout {
     public void setBurnedCalories(float burnedCalories) {
         this.burnedCalories = burnedCalories;
     }
+
+	public Coach getCoach() {
+		return coach;
+	}
+
+	public void setCoach(Coach coach) {
+		this.coach = coach;
+	}
 }

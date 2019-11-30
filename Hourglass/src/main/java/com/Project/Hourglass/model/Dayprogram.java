@@ -7,10 +7,11 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "day_program")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class DayProgram {
+public abstract class Dayprogram {
 
-
+	
     @Id
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
@@ -23,10 +24,10 @@ public abstract class DayProgram {
     @Column(nullable = false)
     private String description;
 
-    public DayProgram() {
+    public Dayprogram() {
     }
 
-    public DayProgram(@NotNull LocalDate day, @NotNull String description) {
+    public Dayprogram(@NotNull LocalDate day, @NotNull String description) {
         this.day = day;
         this.description = description;
     }

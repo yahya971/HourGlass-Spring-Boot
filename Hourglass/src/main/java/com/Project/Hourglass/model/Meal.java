@@ -7,8 +7,22 @@ import java.time.LocalTime;
 @Entity
 public class Meal {
 
-    @Id
+    public Meal(long id, @NotNull LocalTime time, float caloricValue, byte[] photo, @NotNull boolean isTaken,
+			String recipe, String ingridentes, Coach coach) {
+		super();
+		this.id = id;
+		this.time = time;
+		this.caloricValue = caloricValue;
+		this.photo = photo;
+		this.isTaken = isTaken;
+		this.recipe = recipe;
+		this.ingridentes = ingridentes;
+		this.coach = coach;
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="meal_id")
     private long id;
 
     @NotNull
@@ -30,19 +44,15 @@ public class Meal {
 
     @Lob
     private String ingridentes;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+   	@JoinColumn(name = "coach_id", nullable = false)
+    private Coach coach;
 
     public Meal() {
     }
 
-    public Meal(@NotNull LocalTime time, float caloricValue, byte[] photo, @NotNull boolean isTaken, String recipe, String ingridentes) {
-        this.time = time;
-        this.caloricValue = caloricValue;
-        this.photo = photo;
-        this.isTaken = isTaken;
-        this.recipe = recipe;
-        this.ingridentes = ingridentes;
-    }
-
+  
     public long getId() {
         return id;
     }
@@ -98,4 +108,12 @@ public class Meal {
     public void setIngridentes(String ingridentes) {
         this.ingridentes = ingridentes;
     }
+
+	public Coach getCoach() {
+		return coach;
+	}
+
+	public void setCoach(Coach coach) {
+		this.coach = coach;
+	}
 }

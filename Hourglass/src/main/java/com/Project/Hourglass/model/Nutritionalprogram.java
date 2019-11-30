@@ -7,16 +7,16 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "nutritional_program")
 @PrimaryKeyJoinColumn(name = "id")
-public class NutritionalProgram extends DayProgram {
+public class Nutritionalprogram extends Dayprogram {
 
     @NotNull
     @Column(name = "meals_number", nullable = false)
     private int mealsNumber;
 
-    public NutritionalProgram() {
+    public Nutritionalprogram() {
     }
 
-    public NutritionalProgram(@NotNull LocalDate day, @NotNull String description, @NotNull int mealsNumber) {
+    public Nutritionalprogram(@NotNull LocalDate day, @NotNull String description, @NotNull int mealsNumber) {
         super(day, description);
         this.mealsNumber = mealsNumber;
     }

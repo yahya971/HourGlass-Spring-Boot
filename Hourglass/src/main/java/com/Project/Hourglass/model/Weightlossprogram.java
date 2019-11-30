@@ -6,10 +6,26 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "weight_loss_program")
-public class WeightLossProgram {
+public class Weightlossprogram {
 
-    @Id
+    public Weightlossprogram(long id, @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
+			float rating, byte[] backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.startDate = startDate;
+		this.duration = duration;
+		this.rating = rating;
+		this.backgroundImage = backgroundImage;
+		this.objectifs = objectifs;
+		this.client = client;
+		this.coach = coach;
+		this.audiance = audiance;
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="weightlossprogram_id")
     private long id;
 
     @NotNull
@@ -33,18 +49,26 @@ public class WeightLossProgram {
 
     @Lob
     private String objectifs;
-
-    public WeightLossProgram() {
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "client_id", nullable = false)
+    private Client client;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "coach_id", nullable = false)
+    private Coach coach;
+    
+    @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinColumn(name = "audiance_id")
+    private Audiance audiance;
+    
+    
+    
+    
+    
+    public Weightlossprogram() {
     }
 
-    public WeightLossProgram(@NotNull String description, @NotNull LocalDate startDate, @NotNull int duration, float rating, byte[] backgroundImage, String objectifs) {
-        this.description = description;
-        this.startDate = startDate;
-        this.duration = duration;
-        this.rating = rating;
-        this.backgroundImage = backgroundImage;
-        this.objectifs = objectifs;
-    }
 
     public long getId() {
         return id;
@@ -101,4 +125,28 @@ public class WeightLossProgram {
     public void setObjectifs(String objectifs) {
         this.objectifs = objectifs;
     }
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Coach getCoach() {
+		return coach;
+	}
+
+	public void setCoach(Coach coach) {
+		this.coach = coach;
+	}
+
+	public Audiance getAudiance() {
+		return audiance;
+	}
+
+	public void setAudiance(Audiance audiance) {
+		this.audiance = audiance;
+	}
 }

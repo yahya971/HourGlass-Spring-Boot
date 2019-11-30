@@ -8,8 +8,24 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Audiance {
 
-    @Id
+    public Audiance(long id, @NotNull Sex sex, @NotNull float height, @NotNull float objectiveWeight,
+			@NotNull Frame frame, @NotNull FatStorage fatStorage, @NotNull Silhouette silhouette,
+			@NotNull OverweightCause overweightCause, Weightlossprogram weightLossProgram) {
+		super();
+		this.id = id;
+		this.sex = sex;
+		this.height = height;
+		this.objectiveWeight = objectiveWeight;
+		this.frame = frame;
+		this.fatStorage = fatStorage;
+		this.silhouette = silhouette;
+		this.overweightCause = overweightCause;
+		this.weightLossProgram = weightLossProgram;
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="audiance_id")
     private long id;
 
     @NotNull
@@ -44,18 +60,12 @@ public class Audiance {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OverweightCause overweightCause;
+    
+    @OneToOne(mappedBy = "audiance",fetch = FetchType.LAZY)
+    private Weightlossprogram weightLossProgram;
+    
 
     public Audiance() {
-    }
-
-    public Audiance(@NotNull Sex sex, @NotNull float height, @NotNull float objectiveWeight, @NotNull Frame frame, @NotNull FatStorage fatStorage, @NotNull Silhouette silhouette, @NotNull OverweightCause overweightCause) {
-        this.sex = sex;
-        this.height = height;
-        this.objectiveWeight = objectiveWeight;
-        this.frame = frame;
-        this.fatStorage = fatStorage;
-        this.silhouette = silhouette;
-        this.overweightCause = overweightCause;
     }
 
     public long getId() {
@@ -121,4 +131,12 @@ public class Audiance {
     public void setOverweightCause(OverweightCause overweightCause) {
         this.overweightCause = overweightCause;
     }
+
+	public Weightlossprogram getWeightLossProgram() {
+		return weightLossProgram;
+	}
+
+	public void setWeightLossProgram(Weightlossprogram weightLossProgram) {
+		this.weightLossProgram = weightLossProgram;
+	}
 }

@@ -7,10 +7,23 @@ import javax.validation.constraints.NotNull;
 public class Course {
 
 
-    @NotNull
+    public Course(@NotNull long id, @NotNull String name, @NotNull String description, @NotNull byte[] backGroundImage,
+			@NotNull float price, Coach coach, Client client) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.backGroundImage = backGroundImage;
+		this.price = price;
+		this.coach = coach;
+		this.client = client;
+	}
+
+	@NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
+	@Column(name="course_id")
+    private long id;
 
     @NotNull
     private String name;
@@ -25,34 +38,29 @@ public class Course {
 
     @NotNull
     private float price;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+   	@JoinColumn(name = "coach_id")
+    private Coach coach;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+   	@JoinColumn(name = "client_id")
+    private Client client;
 
     //lezem nzidou les videos eli fel Course ama ma3raftech kifech nestockihom eli 3andou fekra iguedha
 
     public Course() {
     }
 
-    public Course(@NotNull String name, @NotNull String description, @NotNull byte[] backGroundImage, @NotNull float price) {
-        this.name = name;
-        this.description = description;
-        this.backGroundImage = backGroundImage;
-        this.price = price;
-    }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
-    public String getNom() {
-        return name;
-    }
-
-    public void setNom(String name) {
-        this.name = name;
-    }
 
     public String getDescription() {
         return description;
@@ -77,4 +85,30 @@ public class Course {
     public void setPrice(float price) {
         this.price = price;
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Coach getCoach() {
+		return coach;
+	}
+
+	public void setCoach(Coach coach) {
+		this.coach = coach;
+	}
+
+
+	public Client getClient() {
+		return client;
+	}
+
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
 }

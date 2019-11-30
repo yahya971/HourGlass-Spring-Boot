@@ -6,10 +6,22 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Follow {
 
-    @NotNull
+    public Follow(@NotNull long id, @NotNull long day, @NotNull boolean realised, @NotNull String comment,
+			@NotNull String progression, Weightlossprogram weightLossProgram) {
+		super();
+		this.follow_id = id;
+		this.day = day;
+		this.realised = realised;
+		this.comment = comment;
+		this.progression = progression;
+		this.weightLossProgram = weightLossProgram;
+	}
+
+	@NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+	@Column(name="follow_id")
+    private long follow_id;
 
     @NotNull
     private long day;
@@ -23,23 +35,21 @@ public class Follow {
 
     @NotNull
     private String progression;
+    
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+   	@JoinColumn(name = "weight_loss_program_id", nullable = false)
+    private Weightlossprogram weightLossProgram;
 
     public Follow() {
     }
 
-    public Follow(@NotNull long day, @NotNull boolean realised, @NotNull String comment, @NotNull String progression) {
-        this.day = day;
-        this.realised = realised;
-        this.comment = comment;
-        this.progression = progression;
-    }
-
     public long getId() {
-        return id;
+        return follow_id;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.follow_id = id;
     }
 
     public long getDay() {
@@ -73,4 +83,12 @@ public class Follow {
     public void setProgression(String progression) {
         this.progression = progression;
     }
+
+	public Weightlossprogram getWeightLossProgram() {
+		return weightLossProgram;
+	}
+
+	public void setWeightLossProgram(Weightlossprogram weightLossProgram) {
+		this.weightLossProgram = weightLossProgram;
+	}
 }

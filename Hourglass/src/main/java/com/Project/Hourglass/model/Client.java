@@ -35,6 +35,7 @@ public class Client extends Person{
     @NotNull
     @Enumerated(EnumType.STRING)
     private Silhouette silhouette;
+    
 
     public Client() {
     }

@@ -9,12 +9,12 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "sports_program")
 @PrimaryKeyJoinColumn(name = "id")
-public class SportsProgram extends DayProgram {
+public class Sportsprogram extends Dayprogram {
 
-    public SportsProgram() {
+    public Sportsprogram() {
     }
 
-    public SportsProgram(@NotNull LocalDate day, @NotNull String description) {
+    public Sportsprogram(@NotNull LocalDate day, @NotNull String description) {
         super(day, description);
     }
 }
