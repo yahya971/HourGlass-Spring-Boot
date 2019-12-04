@@ -1,4 +1,4 @@
-package com.Project.Hourglass.controller;
+package com.Project.Hourglass.Controllers;
 
 
 import com.Project.Hourglass.Repositories.RoleRepository;
