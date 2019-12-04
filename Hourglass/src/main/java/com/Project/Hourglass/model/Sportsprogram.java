@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "sports_program")
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "sport_program_id")
 public class Sportsprogram extends Dayprogram {
 
     public Sportsprogram() {

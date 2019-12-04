@@ -3,60 +3,47 @@ package com.Project.Hourglass.model;
 import com.Project.Hourglass.model.enumeration.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Audiance {
 
-    public Audiance(long id, @NotNull Sex sex, @NotNull float height, @NotNull float objectiveWeight,
-			@NotNull Frame frame, @NotNull FatStorage fatStorage, @NotNull Silhouette silhouette,
-			@NotNull OverweightCause overweightCause, Weightlossprogram weightLossProgram) {
-		super();
-		this.id = id;
-		this.sex = sex;
-		this.height = height;
-		this.objectiveWeight = objectiveWeight;
-		this.frame = frame;
-		this.fatStorage = fatStorage;
-		this.silhouette = silhouette;
-		this.overweightCause = overweightCause;
-		this.weightLossProgram = weightLossProgram;
-	}
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="audiance_id")
     private long id;
 
-    @NotNull
+    @NotEmpty
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Sex sex;
 
-    @NotNull
+    @NotEmpty
     @Column(nullable = false)
     private float height;
 
-    @NotNull
+    @NotEmpty
     @Column(nullable = false)
     private float objectiveWeight;
 
-    @NotNull
+    @NotEmpty
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Frame frame;
 
-    @NotNull
+    @NotEmpty
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private FatStorage fatStorage;
 
-    @NotNull
+    @NotEmpty
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Silhouette silhouette;
 
-    @NotNull
+    @NotEmpty
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OverweightCause overweightCause;
@@ -66,6 +53,19 @@ public class Audiance {
     
 
     public Audiance() {
+    }
+
+    public Audiance(@NotEmpty Sex sex, @NotEmpty float height, @NotEmpty float objectiveWeight,
+                    @NotEmpty Frame frame, @NotEmpty FatStorage fatStorage, @NotEmpty Silhouette silhouette,
+                    @NotEmpty OverweightCause overweightCause, Weightlossprogram weightLossProgram) {
+        this.sex = sex;
+        this.height = height;
+        this.objectiveWeight = objectiveWeight;
+        this.frame = frame;
+        this.fatStorage = fatStorage;
+        this.silhouette = silhouette;
+        this.overweightCause = overweightCause;
+        this.weightLossProgram = weightLossProgram;
     }
 
     public long getId() {

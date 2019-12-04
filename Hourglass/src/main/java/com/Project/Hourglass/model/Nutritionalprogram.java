@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "nutritional_program")
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "nutritional_program_id")
 public class Nutritionalprogram extends Dayprogram {
 
     @NotNull

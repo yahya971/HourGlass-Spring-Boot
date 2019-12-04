@@ -24,7 +24,7 @@ public class Weightlossprogram {
 	}
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="weightlossprogram_id")
     private long id;
 

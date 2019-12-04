@@ -19,7 +19,7 @@ public class Follow {
 
 	@NotNull
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="follow_id")
     private long follow_id;
 

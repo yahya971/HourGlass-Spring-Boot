@@ -5,41 +5,71 @@ import com.Project.Hourglass.model.enumeration.Sex;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
-public class Coach extends Person {
+@PrimaryKeyJoinColumn(name = "coach_id")
+public class Coach extends User {
 
     @Lob
-    @NotNull
+    @NotEmpty
     private String resume;
 
-    @NotNull
     private float score;
+
+    private int age;
+
+    @Lob
+    private byte[] photo;
 
     public Coach() {
     }
 
-    public Coach(long id, String name, String lastname, Sex sex, long age, byte[] photo, String role, String resume, float score) {
-        super(id, name, lastname, sex, age, role,photo);
+    public Coach(@NotBlank @Size(min = 3, max = 50) String username, @NotBlank @Size(max = 50) @Email String email,
+                 @NotBlank @Size(min = 3, max = 50) String name, @NotBlank @Size(min = 3, max = 50) String lastname,
+                 @NotBlank @Size(min = 6, max = 100) String password, @NotEmpty String resume,
+                 float score, int age, byte[] photo) {
+
+        super(username, email, name, lastname, password);
         this.resume = resume;
         this.score = score;
+        this.age = age;
+        this.photo = photo;
     }
 
     public String getResume() {
+
         return resume;
     }
 
     public void setResume(String resume) {
+
         this.resume = resume;
     }
 
     public float getScore() {
+
         return score;
     }
 
     public void setScore(float score) {
+
         this.score = score;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 }
