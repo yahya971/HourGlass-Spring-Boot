@@ -1,23 +1,23 @@
 package com.Project.Hourglass.Controllers;
 
-import com.Project.Hourglass.model.Coach;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.Project.Hourglass.Repositories.CoachRepository;
+import com.Project.Hourglass.model.Coach;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@CrossOrigin
 @RestController
+@RequestMapping({"coach"})
 public class CoachController {
 
-    @RequestMapping({"coach"})
+    @Autowired
+    public CoachRepository coachRepo;
     @GetMapping("/{id}")
-    public Coach getCoach(@PathVariable int id){
-        return findCoachById(id);
+    public Coach getCoach(@PathVariable Long id){
+        return coachRepo.findById(id).get();
     }
 
 
-    private Coach findCoachById(int id) {
-        return null;
-    }
 
 }
