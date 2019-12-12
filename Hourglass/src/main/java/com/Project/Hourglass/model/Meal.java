@@ -2,16 +2,22 @@ package com.Project.Hourglass.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.boot.jackson.JsonComponent;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@JsonComponent
 public class Meal {
 
     public Meal(long id, @NotNull LocalTime time, float caloricValue, byte[] photo, @NotNull boolean isTaken,
-			String recipe, String ingridentes, Coach coach, Set<Nutritionalprogram> nutritionalPrograms) {
+			String recipe, String ingredients, Coach coach, Set<Nutritionalprogram> nutritionalPrograms) {
 		super();
 		this.id = id;
 		this.time = time;
@@ -19,7 +25,7 @@ public class Meal {
 		this.photo = photo;
 		this.isTaken = isTaken;
 		this.recipe = recipe;
-		this.ingridentes = ingridentes;
+		this.ingredients = ingredients;
 		this.coach = coach;
 		this.nutritionalPrograms = nutritionalPrograms;
 	}
@@ -49,16 +55,18 @@ public class Meal {
     private String recipe;
 
     @Lob
-    private String ingridentes;
+    private String ingredients;
     
     @ManyToOne(fetch = FetchType.LAZY)
    	@JoinColumn(name = "coach_id", nullable = false)
+	@JsonIgnore
     private Coach coach;
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                 CascadeType.PERSIST,
                 CascadeType.MERGE
             })
+	@JsonIgnore
     @JoinTable(name = "Meal_Nutritionalprogram",
             joinColumns = { @JoinColumn(name = "meal_id") },
             inverseJoinColumns = { @JoinColumn(name = "nutritional_program_id") })
@@ -116,12 +124,12 @@ public class Meal {
         this.recipe = recipe;
     }
 
-    public String getIngridentes() {
-        return ingridentes;
+    public String getIngredients() {
+        return ingredients;
     }
 
-    public void setIngridentes(String ingridentes) {
-        this.ingridentes = ingridentes;
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
     }
 
 	public Coach getCoach() {

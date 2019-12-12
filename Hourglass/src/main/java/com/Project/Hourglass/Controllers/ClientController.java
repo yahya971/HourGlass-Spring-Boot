@@ -11,7 +11,9 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping({"client"})
+@RequestMapping(value = "/client",
+produces = "application/json",
+method = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST})
 public class ClientController {
 
     @Autowired
