@@ -12,32 +12,32 @@ import javax.validation.constraints.*;
 @PrimaryKeyJoinColumn(name = "client_id")
 public class Client extends User {
 
-    @NotEmpty
+    @NotNull
     private long height;
 
-    @NotEmpty
+    @NotNull
     private float currentWeight;
 
-    @NotEmpty
+    @NotNull
     private float desiredWeight;
 
-    @NotEmpty
+    //@NotEmpty
     @Enumerated(EnumType.STRING)
     private FatStorage fatDistribution;
 
-    @NotEmpty
+    //@NotEmpty
     @Enumerated(EnumType.STRING)
     private Frame frame;
 
-    @NotEmpty
+    //@NotEmpty
     @Enumerated(EnumType.STRING)
     private Silhouette silhouette;
 
-    @NotEmpty
+    //@NotEmpty
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    @NotBlank
+    @NotNull
     private int age;
 
     @Lob

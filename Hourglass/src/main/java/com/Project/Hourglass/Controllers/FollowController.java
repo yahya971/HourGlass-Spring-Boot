@@ -1,23 +1,21 @@
 package com.Project.Hourglass.Controllers;
 
+import com.Project.Hourglass.Repositories.FollowRepository;
 import com.Project.Hourglass.model.Follow;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping({"follow"})
 public class FollowController {
 
+    @Autowired
+    public FollowRepository followRepo;
     @GetMapping("/{id}")
-    public Follow getFollow(@PathVariable int id){
-            return findFollowById(id);
+    public Follow getFollow(@PathVariable Long id){
+            return followRepo.findById(id).get();
         }
 
-
-        private Follow findFollowById(int id) {
-            return null;
-        }
     }
 

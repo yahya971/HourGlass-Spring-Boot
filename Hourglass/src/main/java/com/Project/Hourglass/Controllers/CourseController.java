@@ -1,22 +1,20 @@
 package com.Project.Hourglass.Controllers;
 
+import com.Project.Hourglass.Repositories.CourseRepository;
 import com.Project.Hourglass.model.Course;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("course")
 public class CourseController {
 
+    @Autowired
+    public CourseRepository courseRepo;
     @GetMapping("/{id}")
-    public Course getCourse(@PathVariable int id) {
-        return findCourseById(id);
+    public Course getCourse(@PathVariable Long id) {
+        return courseRepo.findById(id).get();
     }
 
-
-    private Course findCourseById(int id) {
-        return  null;
-    }
 }
