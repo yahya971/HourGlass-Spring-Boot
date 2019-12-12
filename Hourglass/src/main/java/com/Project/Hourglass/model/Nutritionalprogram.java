@@ -3,7 +3,6 @@ package com.Project.Hourglass.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,11 +11,6 @@ import java.util.Set;
 @PrimaryKeyJoinColumn(name = "nutritional_program_id")
 public class Nutritionalprogram extends Dayprogram {
 
-    public Nutritionalprogram(@NotNull int mealsNumber, Set<Meal> meals,LocalDate day,String description) {
-		super(day,description);
-		this.mealsNumber = mealsNumber;
-		this.meals = meals;
-	}
 
 	@NotNull
     @Column(name = "meals_number", nullable = false)
@@ -35,7 +29,11 @@ public class Nutritionalprogram extends Dayprogram {
     public Nutritionalprogram() {
     }
 
-
+    public Nutritionalprogram(@NotNull int mealsNumber, Set<Meal> meals,LocalDate day,String description) {
+        super(day,description);
+        this.mealsNumber = mealsNumber;
+        this.meals = meals;
+    }
 
     public int getMealsNumber() {
         return mealsNumber;

@@ -3,6 +3,7 @@ package com.Project.Hourglass.model;
 import com.Project.Hourglass.model.enumeration.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -15,35 +16,30 @@ public class Audiance {
     @Column(name="audiance_id")
     private long id;
 
-    @NotEmpty
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Sex sex;
 
-    @NotEmpty
+    @NotNull
     @Column(nullable = false)
     private float height;
 
-    @NotEmpty
+    @NotNull
     @Column(nullable = false)
     private float objectiveWeight;
 
-    @NotEmpty
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Frame frame;
 
-    @NotEmpty
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private FatStorage fatStorage;
 
-    @NotEmpty
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Silhouette silhouette;
 
-    @NotEmpty
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OverweightCause overweightCause;
