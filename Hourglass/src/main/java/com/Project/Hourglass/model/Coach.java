@@ -7,8 +7,11 @@ import javax.persistence.Lob;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.*;
 
+import org.springframework.boot.jackson.JsonComponent;
+
 @Entity
 @PrimaryKeyJoinColumn(name = "coach_id")
+@JsonComponent
 public class Coach extends User {
 
     @Lob
