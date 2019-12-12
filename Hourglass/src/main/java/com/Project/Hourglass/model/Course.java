@@ -33,7 +33,6 @@ public class Course {
     private String description;
 
     @Lob
-    @NotNull
     private byte[] backGroundImage;
 
     @NotNull

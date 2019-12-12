@@ -1,6 +1,7 @@
 package com.Project.Hourglass.model;
 
 import com.Project.Hourglass.model.enumeration.Sex;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;

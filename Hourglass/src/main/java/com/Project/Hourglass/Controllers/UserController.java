@@ -26,12 +26,12 @@ public class UserController {
         return userRepo.findAll();
     }
 
-    @PostMapping("/users")
+    @PostMapping("/addUser")
     public User createOrSaveUser(@RequestBody User newUser) {
         return userRepo.save(newUser);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/delUser/{id}")
     void deleteUser(@PathVariable Long id) {
         userRepo.deleteById(id);
     }

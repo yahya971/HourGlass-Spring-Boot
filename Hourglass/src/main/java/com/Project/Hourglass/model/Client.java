@@ -21,19 +21,17 @@ public class Client extends User {
     @NotNull
     private float desiredWeight;
 
-    //@NotEmpty
+
     @Enumerated(EnumType.STRING)
     private FatStorage fatDistribution;
 
-    //@NotEmpty
+
     @Enumerated(EnumType.STRING)
     private Frame frame;
 
-    //@NotEmpty
     @Enumerated(EnumType.STRING)
     private Silhouette silhouette;
 
-    //@NotEmpty
     @Enumerated(EnumType.STRING)
     private Sex sex;
 

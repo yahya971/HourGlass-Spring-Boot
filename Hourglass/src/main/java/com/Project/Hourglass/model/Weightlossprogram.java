@@ -1,11 +1,15 @@
 package com.Project.Hourglass.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "weight_loss_program")
+
 public class Weightlossprogram {
 
     public Weightlossprogram(long id, @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
@@ -60,6 +64,7 @@ public class Weightlossprogram {
     
     @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinColumn(name = "audiance_id")
+    @JsonIgnore
     private Audiance audiance;
     
     

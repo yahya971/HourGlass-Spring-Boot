@@ -1,5 +1,9 @@
 package com.Project.Hourglass.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -35,9 +39,9 @@ public class Follow {
 
     @NotNull
     private String progression;
-    
-    
-    @ManyToOne(fetch = FetchType.LAZY)
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
    	@JoinColumn(name = "weight_loss_program_id", nullable = false)
     private Weightlossprogram weightLossProgram;
 
@@ -60,7 +64,7 @@ public class Follow {
         this.day = day;
     }
 
-    public boolean isRealised() {
+    public boolean getRealised() {
         return realised;
     }
 
