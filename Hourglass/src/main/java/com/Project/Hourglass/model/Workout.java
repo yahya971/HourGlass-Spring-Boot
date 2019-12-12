@@ -2,13 +2,20 @@ package com.Project.Hourglass.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+
+
+import java.awt.List;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Workout {
 
     public Workout(long id, @NotNull LocalTime startingHour, @NotNull LocalTime endingHour, String description,
-			String equipment, float burnedCalories, Coach coach) {
+			String equipment, float burnedCalories, Coach coach, Set<Sportsprogram> sportsPrograms) {
 		super();
 		this.id = id;
 		this.startingHour = startingHour;
@@ -17,6 +24,7 @@ public class Workout {
 		this.equipment = equipment;
 		this.burnedCalories = burnedCalories;
 		this.coach = coach;
+		this.sportsPrograms = sportsPrograms;
 	}
 
 	@Id
@@ -45,6 +53,16 @@ public class Workout {
     @ManyToOne(fetch = FetchType.LAZY)
    	@JoinColumn(name = "coach_id", nullable = false)
     private Coach coach;
+    
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            })
+    @JoinTable(name = "workout_sportsprogram",
+            joinColumns = { @JoinColumn(name = "workout_id") },
+            inverseJoinColumns = { @JoinColumn(name = "sport_program_id") })
+    private Set<Sportsprogram> sportsPrograms=new HashSet<Sportsprogram>();
 
     public Workout() {
     }
@@ -105,5 +123,17 @@ public class Workout {
 
 	public void setCoach(Coach coach) {
 		this.coach = coach;
+	}
+
+
+
+	public Set<Sportsprogram> getSportsPrograms() {
+		return sportsPrograms;
+	}
+
+
+
+	public void setSportsPrograms(Set<Sportsprogram> sportsPrograms) {
+		this.sportsPrograms = sportsPrograms;
 	}
 }

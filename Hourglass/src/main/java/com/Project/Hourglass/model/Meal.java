@@ -3,12 +3,15 @@ package com.Project.Hourglass.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Meal {
 
     public Meal(long id, @NotNull LocalTime time, float caloricValue, byte[] photo, @NotNull boolean isTaken,
-			String recipe, String ingridentes, Coach coach) {
+			String recipe, String ingridentes, Coach coach, Set<Nutritionalprogram> nutritionalPrograms) {
 		super();
 		this.id = id;
 		this.time = time;
@@ -18,7 +21,10 @@ public class Meal {
 		this.recipe = recipe;
 		this.ingridentes = ingridentes;
 		this.coach = coach;
+		this.nutritionalPrograms = nutritionalPrograms;
 	}
+
+
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +54,15 @@ public class Meal {
     @ManyToOne(fetch = FetchType.LAZY)
    	@JoinColumn(name = "coach_id", nullable = false)
     private Coach coach;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            })
+    @JoinTable(name = "Meal_Nutritionalprogram",
+            joinColumns = { @JoinColumn(name = "meal_id") },
+            inverseJoinColumns = { @JoinColumn(name = "nutritional_program_id") })
+    private Set<Nutritionalprogram> nutritionalPrograms=new HashSet<Nutritionalprogram>();
 
     public Meal() {
     }
@@ -115,5 +130,15 @@ public class Meal {
 
 	public void setCoach(Coach coach) {
 		this.coach = coach;
+	}
+
+
+	public Set<Nutritionalprogram> getNutritionalPrograms() {
+		return nutritionalPrograms;
+	}
+
+
+	public void setNutritionalPrograms(Set<Nutritionalprogram> nutritionalPrograms) {
+		this.nutritionalPrograms = nutritionalPrograms;
 	}
 }

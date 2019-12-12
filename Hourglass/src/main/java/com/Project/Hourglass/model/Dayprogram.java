@@ -3,6 +3,7 @@ package com.Project.Hourglass.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "day_program")
@@ -11,7 +12,7 @@ public abstract class Dayprogram {
 
 	
     @Id
-    @Column(name="id")
+    @Column(name="day_program_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -23,6 +24,9 @@ public abstract class Dayprogram {
     @Lob
     @Column(nullable = false)
     private String description;
+    
+    
+
 
     public Dayprogram() {
     }
@@ -55,4 +59,6 @@ public abstract class Dayprogram {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }
