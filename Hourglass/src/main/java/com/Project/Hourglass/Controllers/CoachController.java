@@ -48,6 +48,12 @@ public class CoachController {
             coach.setPhoto(newCoach.getPhoto());
             coach.setResume(newCoach.getResume());
             coach.setUsername(newCoach.getUsername());
+            coach.setExperience(newCoach.getExperience());
+            coach.setScore1(newCoach.getScore1());
+            coach.setScore2(newCoach.getScore2());
+            coach.setScore3(newCoach.getScore3());
+            coach.setScore4(newCoach.getScore4());
+            coach.setSpeciality(newCoach.getSpeciality());
             return coachRepo.save(coach);   
         }).orElseGet(() -> {
             newCoach.setId(id);

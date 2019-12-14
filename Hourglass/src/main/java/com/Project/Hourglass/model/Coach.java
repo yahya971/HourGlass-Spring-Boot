@@ -19,26 +19,47 @@ public class Coach extends User {
     @NotEmpty
     private String resume;
 
-    private float score;
+    private float score1;
+
+    private float score2;
+
+    private float score3;
+
+    private float score4;
 
     private int age;
 
     @Lob
     private byte[] photo;
 
+    @NotEmpty
+    private int experience;
+
+    @NotEmpty
+    private String speciality;
+
+    @NotEmpty
+    private String phone;
     public Coach() {
     }
 
     public Coach(@NotBlank @Size(min = 3, max = 50) String username, @NotBlank @Size(max = 50) @Email String email,
                  @NotBlank @Size(min = 3, max = 50) String name, @NotBlank @Size(min = 3, max = 50) String lastname,
                  @NotBlank @Size(min = 6, max = 100) String password, @NotEmpty String resume,
-                 float score, int age, byte[] photo) {
+                 float score1, float score2,float score3, float socre4, int age,
+                 byte[] photo,@NotEmpty int experience,@NotEmpty String speciality,@NotEmpty String phone ) {
 
         super(username, email, name, lastname, password);
         this.resume = resume;
-        this.score = score;
+        this.score1 = score1;
+        this.score2 = score2;
+        this.score3 = score3;
+        this.score4 = score4;
         this.age = age;
         this.photo = photo;
+        this.experience = experience;
+        this.speciality = speciality;
+        this.phone = phone;
     }
 
     public String getResume() {
@@ -51,14 +72,36 @@ public class Coach extends User {
         this.resume = resume;
     }
 
-    public float getScore() {
-
-        return score;
+    public float getScore1() {
+        return score1;
     }
 
-    public void setScore(float score) {
+    public void setScore1(float score1) {
+        this.score1 = score1;
+    }
 
-        this.score = score;
+    public float getScore2() {
+        return score2;
+    }
+
+    public void setScore2(float score2) {
+        this.score2 = score2;
+    }
+
+    public float getScore3() {
+        return score3;
+    }
+
+    public void setScore3(float score3) {
+        this.score3 = score3;
+    }
+
+    public float getScore4() {
+        return score4;
+    }
+
+    public void setScore4(float score4) {
+        this.score4 = score4;
     }
 
     public int getAge() {
@@ -75,5 +118,29 @@ public class Coach extends User {
 
     public void setPhoto(byte[] photo) {
         this.photo = photo;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
