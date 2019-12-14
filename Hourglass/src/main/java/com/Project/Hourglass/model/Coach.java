@@ -32,13 +32,13 @@ public class Coach extends User {
     @Lob
     private byte[] photo;
 
-    @NotEmpty
+    @NotNull
     private int experience;
 
-    @NotEmpty
+    @NotNull
     private String speciality;
 
-    @NotEmpty
+    @NotNull
     private String phone;
     public Coach() {
     }

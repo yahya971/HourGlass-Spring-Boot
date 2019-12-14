@@ -15,17 +15,19 @@ import java.util.Set;
 public class Workout {
 
     public Workout(long id, @NotNull LocalTime startingHour, @NotNull LocalTime endingHour, String description,
-			String equipment, float burnedCalories, Coach coach, Set<Sportsprogram> sportsPrograms) {
+			String equipment, Byte[] photo, float burnedCalories, Coach coach, Set<Sportsprogram> sportsPrograms) {
 		super();
 		this.id = id;
 		this.startingHour = startingHour;
 		this.endingHour = endingHour;
 		this.description = description;
 		this.equipment = equipment;
+		this.photo = photo;
 		this.burnedCalories = burnedCalories;
 		this.coach = coach;
 		this.sportsPrograms = sportsPrograms;
 	}
+
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +47,8 @@ public class Workout {
 
     @Lob
     private String equipment;
+    @Lob
+    private Byte[] photo;
 
 
     private float burnedCalories;
@@ -54,14 +58,15 @@ public class Workout {
    	@JoinColumn(name = "coach_id", nullable = false)
     private Coach coach;
     
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
-            })
-    @JoinTable(name = "workout_sportsprogram",
-            joinColumns = { @JoinColumn(name = "workout_id") },
-            inverseJoinColumns = { @JoinColumn(name = "sport_program_id") })
+
+    
+    
+	@ManyToMany(fetch = FetchType.LAZY,
+    cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+    },
+    mappedBy = "workouts")
     private Set<Sportsprogram> sportsPrograms=new HashSet<Sportsprogram>();
 
     public Workout() {
@@ -135,5 +140,17 @@ public class Workout {
 
 	public void setSportsPrograms(Set<Sportsprogram> sportsPrograms) {
 		this.sportsPrograms = sportsPrograms;
+	}
+
+
+
+	public Byte[] getPhoto() {
+		return photo;
+	}
+
+
+
+	public void setPhoto(Byte[] photo) {
+		this.photo = photo;
 	}
 }

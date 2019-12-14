@@ -3,7 +3,9 @@ package com.Project.Hourglass.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.Project.Hourglass.Repositories.MealRepository;
 import com.Project.Hourglass.Repositories.NutritionalprogramRepository;
+import com.Project.Hourglass.model.Meal;
 import com.Project.Hourglass.model.Nutritionalprogram;
 
 import java.util.List;
@@ -20,6 +22,8 @@ public class  NutritionalProgramController{
 
 	@Autowired
 	public NutritionalprogramRepository nutProgramRepo;
+	@Autowired
+	public MealRepository mealRepo;
 	
 
 	@GetMapping("/{id}")
@@ -33,8 +37,16 @@ public class  NutritionalProgramController{
 		return nutProgramRepo.findAll();
 	}
 
-	@PostMapping("/addNutritionalProgram")
-	public Nutritionalprogram createOrSaveNutritionalProgram(@RequestBody Nutritionalprogram newNutritionalprogram){
+	@PostMapping("/addNutritionalProgram/{ids}")
+	public Nutritionalprogram createOrSaveNutritionalProgram(@RequestBody Nutritionalprogram newNutritionalprogram,@PathVariable String ids){
+		String[] idArrays=ids.split(",");
+		for(String sId: idArrays) {
+			Long id=Long.parseLong(sId);
+			Meal meal=mealRepo.findById(id).get();
+			System.out.println(meal.getType());
+			newNutritionalprogram.getMeals().add(meal);
+			
+		}
 		return nutProgramRepo.save(newNutritionalprogram);
 	}
 

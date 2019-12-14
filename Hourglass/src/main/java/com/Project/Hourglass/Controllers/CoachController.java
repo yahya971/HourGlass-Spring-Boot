@@ -21,7 +21,8 @@ public class CoachController {
 
     @GetMapping("/{id}")
     public Coach getCoach(@PathVariable Long id) {
-        return coachRepo.findById(id).get();
+    	Coach coach=coachRepo.findById(id).get();
+        return coach;
     }
 
     @GetMapping("")
