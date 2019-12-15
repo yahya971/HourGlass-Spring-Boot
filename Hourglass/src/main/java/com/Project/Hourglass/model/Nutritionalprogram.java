@@ -2,6 +2,9 @@ package com.Project.Hourglass.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,18 +21,23 @@ public class Nutritionalprogram extends Dayprogram {
     
 
     
+
+    
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
-            },
-            mappedBy = "nutritionalPrograms")
+    cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+    })
+@JsonIgnore
+@JoinTable(name = "Meal_Nutritionalprogram",
+    joinColumns = { @JoinColumn(name = "nutritional_program_id") },
+    inverseJoinColumns = { @JoinColumn(name = "meal_id") })
     private Set<Meal> meals= new HashSet<Meal>();
 
     public Nutritionalprogram() {
     }
 
-    public Nutritionalprogram(@NotNull int mealsNumber, Set<Meal> meals,LocalDate day,String description) {
+    public Nutritionalprogram(@NotNull int mealsNumber, Set<Meal> meals,String day,String description) {
         super(day,description);
         this.mealsNumber = mealsNumber;
         this.meals = meals;

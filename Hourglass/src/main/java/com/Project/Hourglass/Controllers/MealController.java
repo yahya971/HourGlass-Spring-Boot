@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Project.Hourglass.Repositories.CoachRepository;
 import com.Project.Hourglass.Repositories.MealRepository;
 import com.Project.Hourglass.model.Coach;
 import com.Project.Hourglass.model.Meal;
-import com.Project.Hourglass.model.User;
+
 
 @CrossOrigin
 @RestController
@@ -27,6 +28,8 @@ method = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST})
 public class  MealController{
 	@Autowired
 	public MealRepository mealRepo;
+	@Autowired
+	public CoachRepository coachRepo;
 	
 	@GetMapping("/{id}")
 	public Meal getMeal(@PathVariable Long id) {
@@ -38,8 +41,11 @@ public class  MealController{
         return mealRepo.findAll();
     }
 
-    @PostMapping("/addMeal")
-    public Meal createOrSaveMeal(@RequestBody Meal newMeal) {
+    @PostMapping("/addMeal/{coachId}")
+    public Meal createOrSaveMeal(@RequestBody Meal newMeal,@PathVariable int coachId) {
+    	System.out.println("coach id"+coachId);
+    	Coach coach=coachRepo.findById((long) 1).get();
+    	newMeal.setCoach(coach);
         return mealRepo.save(newMeal);
     }
 
@@ -57,6 +63,8 @@ public class  MealController{
             meal.setTaken(newmeal.isTaken());
             meal.setRecipe(newmeal.getRecipe());
             meal.setIngredients(newmeal.getIngredients());
+            meal.setDescription(newmeal.getDescription());
+            meal.setType(newmeal.getType());
 
             return mealRepo.save(meal);   
         }).orElseGet(() -> {

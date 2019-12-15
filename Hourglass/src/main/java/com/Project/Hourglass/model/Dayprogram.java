@@ -18,7 +18,7 @@ public abstract class Dayprogram {
 
     @NotNull
     @Column(name = "day", nullable = false)
-    private LocalDate day;
+    private String day;
 
     @NotNull
     @Lob
@@ -31,7 +31,7 @@ public abstract class Dayprogram {
     public Dayprogram() {
     }
 
-    public Dayprogram(@NotNull LocalDate day, @NotNull String description) {
+    public Dayprogram(@NotNull String day, @NotNull String description) {
         this.day = day;
         this.description = description;
     }
@@ -44,11 +44,11 @@ public abstract class Dayprogram {
         this.id = id;
     }
 
-    public LocalDate getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(LocalDate day) {
+    public void setDay(String day) {
         this.day = day;
     }
 

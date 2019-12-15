@@ -39,7 +39,11 @@ public class Coach extends User {
     private String speciality;
 
     @NotBlank
+    private String speciality;
+
+    @NotBlank
     private String phone;
+    
     public Coach() {
     }
 

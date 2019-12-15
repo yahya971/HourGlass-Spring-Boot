@@ -16,11 +16,14 @@ import java.util.Set;
 @JsonComponent
 public class Meal {
 
-    public Meal(long id, @NotNull LocalTime time, float caloricValue, byte[] photo, @NotNull boolean isTaken,
-			String recipe, String ingredients, Coach coach, Set<Nutritionalprogram> nutritionalPrograms) {
+    public Meal(long id, @NotNull LocalTime time, String type, String description, float caloricValue, byte[] photo,
+			@NotNull boolean isTaken, String recipe, String ingredients, Coach coach,
+			Set<Nutritionalprogram> nutritionalPrograms) {
 		super();
 		this.id = id;
 		this.time = time;
+		this.type = type;
+		this.description = description;
 		this.caloricValue = caloricValue;
 		this.photo = photo;
 		this.isTaken = isTaken;
@@ -29,6 +32,7 @@ public class Meal {
 		this.coach = coach;
 		this.nutritionalPrograms = nutritionalPrograms;
 	}
+
 
 
 
@@ -41,7 +45,9 @@ public class Meal {
     @Column(nullable = false)
     private LocalTime time;
 
-
+    private String type;
+    private String description;
+    
     private float caloricValue;
 
     @Lob
@@ -61,15 +67,14 @@ public class Meal {
    	@JoinColumn(name = "coach_id", nullable = false)
 	@JsonIgnore
     private Coach coach;
+    
+    
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
-            })
-	@JsonIgnore
-    @JoinTable(name = "Meal_Nutritionalprogram",
-            joinColumns = { @JoinColumn(name = "meal_id") },
-            inverseJoinColumns = { @JoinColumn(name = "nutritional_program_id") })
+                CascadeType.MERGE,
+                CascadeType.PERSIST
+            },
+            mappedBy = "meals")
     private Set<Nutritionalprogram> nutritionalPrograms=new HashSet<Nutritionalprogram>();
 
     public Meal() {
@@ -148,5 +153,25 @@ public class Meal {
 
 	public void setNutritionalPrograms(Set<Nutritionalprogram> nutritionalPrograms) {
 		this.nutritionalPrograms = nutritionalPrograms;
+	}
+
+
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

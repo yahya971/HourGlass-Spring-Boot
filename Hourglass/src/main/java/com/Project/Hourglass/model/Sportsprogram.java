@@ -3,6 +3,8 @@ package com.Project.Hourglass.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -18,22 +20,24 @@ import java.util.Set;
 public class Sportsprogram extends Dayprogram {
 
 
-	public Sportsprogram(Set<Workout> workouts,LocalDate day,String description) {
+	public Sportsprogram(Set<Workout> workouts,String day,String description) {
 		super(day,description);
 		this.workouts = workouts;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                 CascadeType.PERSIST,
                 CascadeType.MERGE
-            },
-            mappedBy = "sportsPrograms")
+            })
+    @JoinTable(name = "workout_sportsprogram",
+            joinColumns = { @JoinColumn(name = "sport_program_id") },
+            inverseJoinColumns = { @JoinColumn(name = "workout_id") })
     private Set<Workout> workouts= new HashSet<Workout>();
     public Sportsprogram() {
     }
 
-    public Sportsprogram(@NotNull LocalDate day, @NotNull String description,Set<Workout> workouts) {
+    public Sportsprogram(@NotNull String day, @NotNull String description,Set<Workout> workouts) {
         super(day, description);
         this.workouts = workouts;
     }
