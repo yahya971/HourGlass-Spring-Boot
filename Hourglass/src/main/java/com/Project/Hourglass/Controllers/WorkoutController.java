@@ -21,7 +21,7 @@ import com.Project.Hourglass.model.Workout;
 
 @CrossOrigin
 @RestController
-@RequestMapping({"Workout"})
+@RequestMapping({"workout"})
 public class  WorkoutController{
 	@Autowired
 	public WorkoutRepository workoutRepo;

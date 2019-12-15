@@ -22,7 +22,7 @@ import com.Project.Hourglass.model.Workout;
 
 @CrossOrigin
 @RestController
-@RequestMapping({"SportsProgram"})
+@RequestMapping({"sportsProgram"})
 public class  SportsProgramController{
 	@Autowired
 	SportsprogramRepository sportsprogramRepo;
@@ -39,7 +39,7 @@ public class  SportsProgramController{
 		return sportsprogramRepo.findAll();
 	}
 
-	@PostMapping("/addSportsProgram/{workoutIds}")
+	@PostMapping("/addSportsProgram/{ids}")
 	public Sportsprogram createOrSaveNutritionalProgram(@RequestBody Sportsprogram newSportsprogram,@PathVariable String ids){
 		String[] idArrays=ids.split(",");
 		for(String sId: idArrays) {

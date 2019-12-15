@@ -3,7 +3,7 @@ package com.Project.Hourglass.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.awt.List;
 import java.time.LocalTime;
@@ -53,14 +53,14 @@ public class Workout {
 
     private float burnedCalories;
 
-    
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
    	@JoinColumn(name = "coach_id", nullable = false)
     private Coach coach;
     
 
     
-    
+    @JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY,
     cascade = {
         CascadeType.PERSIST,
