@@ -3,10 +3,12 @@ package com.Project.Hourglass.Controllers;
 
 import com.Project.Hourglass.Repositories.*;
 import com.Project.Hourglass.message.request.LoginForm;
+import com.Project.Hourglass.message.request.SignUpClientForm;
 import com.Project.Hourglass.message.request.SignUpCoachForm;
 import com.Project.Hourglass.message.request.SignUpForm;
 import com.Project.Hourglass.message.response.JwtResponse;
 import com.Project.Hourglass.message.response.ResponseMessage;
+import com.Project.Hourglass.model.Client;
 import com.Project.Hourglass.model.Coach;
 import com.Project.Hourglass.model.Role;
 import com.Project.Hourglass.model.User;
@@ -121,7 +123,7 @@ public class AuthRestAPIs {
 
 
     @PostMapping("/signup/coach")
-    public ResponseEntity<?> registerClient(@Valid @RequestBody SignUpCoachForm signUpRequest) {
+    public ResponseEntity<?> registerCoach(@Valid @RequestBody SignUpCoachForm signUpRequest) {
         if(coachRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"), HttpStatus.BAD_REQUEST);
         }
@@ -161,6 +163,51 @@ public class AuthRestAPIs {
         });
         coach.setRoles(roles);
         coachRepository.save(coach);
+
+        return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
+    }
+
+    @PostMapping("/signup/client")
+    public ResponseEntity<?> registerClient(@Valid @RequestBody SignUpClientForm signUpRequest) {
+        if(clientRepository.existsByUsername(signUpRequest.getUsername())) {
+            return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"), HttpStatus.BAD_REQUEST);
+        }
+
+        if(clientRepository.existsByEmail(signUpRequest.getEmail())) {
+            return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already in use!"), HttpStatus.BAD_REQUEST);
+        }
+
+        // creating client account
+        Client client = new Client(signUpRequest.getUsername(), signUpRequest.getEmail(), signUpRequest.getName(), signUpRequest.getLastname(),
+                encoder.encode(signUpRequest.getPassword()), signUpRequest.getHeight(), signUpRequest.getCurrentWeight(),
+                signUpRequest.getDesiredWeight(), signUpRequest.getFatDistribution(), signUpRequest.getFrame(), signUpRequest.getSilhouette(),
+                signUpRequest.getSex(), signUpRequest.getAge(), signUpRequest.getPhoto());
+
+        Set<String> strRoles = signUpRequest.getRole();
+        Set<Role> roles = new HashSet<>();
+
+        strRoles.forEach(role -> {
+            switch (role) {
+                case "admin" :
+                    Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+                            .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find.") );
+                    roles.add(adminRole);
+
+                    break;
+                case "coach" :
+                    Role coachRole = roleRepository.findByName(RoleName.ROLE_COACH)
+                            .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+                    roles.add(coachRole);
+
+                    break;
+                default:
+                    Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+                            .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+                    roles.add(userRole);
+            }
+        });
+        client.setRoles(roles);
+        clientRepository.save(client);
 
         return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
     }
