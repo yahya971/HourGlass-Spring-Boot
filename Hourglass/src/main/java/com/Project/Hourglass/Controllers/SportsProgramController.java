@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Project.Hourglass.Repositories.SportsprogramRepository;
 import com.Project.Hourglass.Repositories.WorkoutRepository;
+import com.Project.Hourglass.model.Dayprogram;
 import com.Project.Hourglass.model.Meal;
 import com.Project.Hourglass.model.Nutritionalprogram;
 import com.Project.Hourglass.model.Sportsprogram;
@@ -72,4 +73,8 @@ public class  SportsProgramController{
 				}
 		);
 	}
+    @GetMapping("/byWeightLossProgram/{id}")
+    public List<Sportsprogram> getAllDayPrograms(@PathVariable Long id) {
+        return sportsprogramRepo.findSportsprogramByWeightlossprogramId(id);
+    }
 }

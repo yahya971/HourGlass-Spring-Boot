@@ -14,19 +14,26 @@ import java.util.ArrayList;
 public abstract class Dayprogram {
 
 	
-    public Dayprogram( @NotNull String day, @NotNull String description, Weightlossprogram weightLossProgram) {
+
+    
+	public Dayprogram(@NotNull String name, @NotNull String day, @NotNull String description,
+			Weightlossprogram weightlossprogram) {
 		super();
 		
+		this.name = name;
 		this.day = day;
 		this.description = description;
-		this.weightlossprogram = weightLossProgram;
+		this.weightlossprogram = weightlossprogram;
 	}
+
+
 
 	@Id
     @Column(name="day_program_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+	@NotNull
+	private String name;
     @NotNull
     @Column(name = "day", nullable = false)
     private String day;
@@ -81,6 +88,21 @@ public abstract class Dayprogram {
 	public void setWeightLossProgram(Weightlossprogram weightLossProgram) {
 		this.weightlossprogram = weightLossProgram;
 	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
 
 
 }
