@@ -2,6 +2,9 @@ package com.Project.Hourglass.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -11,7 +14,15 @@ import java.util.ArrayList;
 public abstract class Dayprogram {
 
 	
-    @Id
+    public Dayprogram( @NotNull String day, @NotNull String description, Weightlossprogram weightLossProgram) {
+		super();
+		
+		this.day = day;
+		this.description = description;
+		this.weightlossprogram = weightLossProgram;
+	}
+
+	@Id
     @Column(name="day_program_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -26,15 +37,18 @@ public abstract class Dayprogram {
     private String description;
     
     
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+   	@JoinColumn(name = "weight_loss_program_id", nullable = false)
+    private Weightlossprogram weightlossprogram;
+    
+    
 
 
     public Dayprogram() {
     }
 
-    public Dayprogram(@NotNull String day, @NotNull String description) {
-        this.day = day;
-        this.description = description;
-    }
+
 
     public long getId() {
         return id;
@@ -59,6 +73,14 @@ public abstract class Dayprogram {
     public void setDescription(String description) {
         this.description = description;
     }
+    @JsonIgnore
+	public Weightlossprogram getWeightLossProgram() {
+		return weightlossprogram;
+	}
+    
+	public void setWeightLossProgram(Weightlossprogram weightLossProgram) {
+		this.weightlossprogram = weightLossProgram;
+	}
 
 
 }

@@ -28,7 +28,6 @@ public class Nutritionalprogram extends Dayprogram {
         CascadeType.PERSIST,
         CascadeType.MERGE
     })
-@JsonIgnore
 @JoinTable(name = "Meal_Nutritionalprogram",
     joinColumns = { @JoinColumn(name = "nutritional_program_id") },
     inverseJoinColumns = { @JoinColumn(name = "meal_id") })
@@ -37,8 +36,8 @@ public class Nutritionalprogram extends Dayprogram {
     public Nutritionalprogram() {
     }
 
-    public Nutritionalprogram(@NotNull int mealsNumber, Set<Meal> meals,String day,String description) {
-        super(day,description);
+    public Nutritionalprogram(@NotNull int mealsNumber, Set<Meal> meals,String day,String description,Weightlossprogram w) {
+        super(day,description,w);
         this.mealsNumber = mealsNumber;
         this.meals = meals;
     }

@@ -75,6 +75,7 @@ public class Meal {
                 CascadeType.PERSIST
             },
             mappedBy = "meals")
+    @JsonIgnore
     private Set<Nutritionalprogram> nutritionalPrograms=new HashSet<Nutritionalprogram>();
 
     public Meal() {

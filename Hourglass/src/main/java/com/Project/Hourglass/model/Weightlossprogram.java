@@ -64,7 +64,7 @@ public class Weightlossprogram {
     
     @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinColumn(name = "audiance_id")
-    @JsonIgnore
+    
     private Audiance audiance;
     
     

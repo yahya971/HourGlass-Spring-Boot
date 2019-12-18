@@ -32,5 +32,9 @@ public class WeightlossprogramController {
 	public List<Weightlossprogram> getProgramByCoachId(@PathVariable Long id){
 		return wlpRepo.findProgramByCoachId(id);
 	}
+	@GetMapping("byClient/{id}")
+	public List<Weightlossprogram> getProgramByClientId(@PathVariable Long id){
+		return wlpRepo.findProgramByClientId(id);
+	}
 
 }
