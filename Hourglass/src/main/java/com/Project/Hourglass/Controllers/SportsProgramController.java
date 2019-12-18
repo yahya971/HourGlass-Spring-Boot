@@ -40,6 +40,7 @@ public class  SportsProgramController{
 		return sportsprogramRepo.findAll();
 	}
 
+
 	@PostMapping("/addSportsProgram/{ids}")
 	public Sportsprogram createOrSaveNutritionalProgram(@RequestBody Sportsprogram newSportsprogram,@PathVariable String ids){
 		String[] idArrays=ids.split(",");
