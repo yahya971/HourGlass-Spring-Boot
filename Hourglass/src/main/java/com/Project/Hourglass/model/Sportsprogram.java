@@ -20,8 +20,8 @@ import java.util.Set;
 public class Sportsprogram extends Dayprogram {
 
 
-	public Sportsprogram(Set<Workout> workouts,String day,String description) {
-		super(day,description);
+	public Sportsprogram(Set<Workout> workouts,String day,String description,Weightlossprogram w,String name) {
+		super(day,description,name,w);
 		this.workouts = workouts;
 	}
 
@@ -37,8 +37,8 @@ public class Sportsprogram extends Dayprogram {
     public Sportsprogram() {
     }
 
-    public Sportsprogram(@NotNull String day, @NotNull String description,Set<Workout> workouts) {
-        super(day, description);
+    public Sportsprogram(@NotNull String day, @NotNull String description,Set<Workout> workouts,Weightlossprogram w,String name) {
+        super(day, description,name,w);
         this.workouts = workouts;
     }
 

@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 public class Workout {
 
-    public Workout(long id, @NotNull LocalTime startingHour, @NotNull LocalTime endingHour, String description,
+    public Workout(long id,String name, @NotNull LocalTime startingHour, @NotNull LocalTime endingHour, String description,
 			String equipment, Byte[] photo, float burnedCalories, Coach coach, Set<Sportsprogram> sportsPrograms) {
 		super();
 		this.id = id;
@@ -26,6 +26,7 @@ public class Workout {
 		this.burnedCalories = burnedCalories;
 		this.coach = coach;
 		this.sportsPrograms = sportsPrograms;
+		this.name=name;
 	}
 
 
@@ -33,6 +34,8 @@ public class Workout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="workout_id")
     private long id;
+	
+	private String name;
 
     @NotNull
     @Column(name = "starting_hour", nullable = false)
@@ -152,5 +155,17 @@ public class Workout {
 
 	public void setPhoto(Byte[] photo) {
 		this.photo = photo;
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

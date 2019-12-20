@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.Project.Hourglass.Repositories.MealRepository;
 import com.Project.Hourglass.Repositories.NutritionalprogramRepository;
+import com.Project.Hourglass.model.Dayprogram;
 import com.Project.Hourglass.model.Meal;
 import com.Project.Hourglass.model.Nutritionalprogram;
 
@@ -71,4 +72,8 @@ public class  NutritionalProgramController{
 				}
 		);
 	}
+    @GetMapping("/byWeightLossProgram/{id}")
+    public List<Nutritionalprogram> getAllPrograms(@PathVariable Long id) {
+        return nutProgramRepo.findNutritionalprogamByWeightlossprogramId(id);
+    }
 }

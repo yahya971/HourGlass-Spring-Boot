@@ -49,7 +49,7 @@ public class  WorkoutController{
         workoutRepo.deleteById(id);
     }
 
-    @PutMapping("/updateMeal/{id}")
+    @PutMapping("/updateWorkout/{id}")
     Workout updateWorkout(@RequestBody Workout newWorkout, @PathVariable Long id) {
         return workoutRepo.findById(id).map(workout -> {
             workout.setBurnedCalories(newWorkout.getBurnedCalories());

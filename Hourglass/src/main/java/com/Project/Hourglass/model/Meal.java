@@ -16,7 +16,7 @@ import java.util.Set;
 @JsonComponent
 public class Meal {
 
-    public Meal(long id, @NotNull LocalTime time, String type, String description, float caloricValue, byte[] photo,
+    public Meal(long id,String name, @NotNull LocalTime time, String type, String description, float caloricValue, byte[] photo,
 			@NotNull boolean isTaken, String recipe, String ingredients, Coach coach,
 			Set<Nutritionalprogram> nutritionalPrograms) {
 		super();
@@ -31,6 +31,7 @@ public class Meal {
 		this.ingredients = ingredients;
 		this.coach = coach;
 		this.nutritionalPrograms = nutritionalPrograms;
+		this.name=name;
 	}
 
 
@@ -40,7 +41,7 @@ public class Meal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="meal_id")
     private long id;
-
+	private String name;
     @NotNull
     @Column(nullable = false)
     private LocalTime time;
@@ -75,6 +76,7 @@ public class Meal {
                 CascadeType.PERSIST
             },
             mappedBy = "meals")
+    @JsonIgnore
     private Set<Nutritionalprogram> nutritionalPrograms=new HashSet<Nutritionalprogram>();
 
     public Meal() {
@@ -173,5 +175,15 @@ public class Meal {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

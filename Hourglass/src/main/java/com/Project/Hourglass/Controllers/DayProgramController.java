@@ -61,5 +61,11 @@ public class DayProgramController {
 	            return dayProgramRepo.save(newprogram);
 	        });
 	    }
+	    
+	    @GetMapping("/byWeightLossProgram/{id}")
+	    public List<Dayprogram> getAllDayPrograms(@PathVariable Long id) {
+	        return dayProgramRepo.findDayprogramByWeightlossprogramId(id);
+	    }
+	    
 	   
 }

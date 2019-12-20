@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -11,6 +12,23 @@ import java.time.LocalDate;
 @Table(name = "weight_loss_program")
 
 public class Weightlossprogram {
+
+
+    public Weightlossprogram(long id, @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
+			float rating, byte[] backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance, @NotBlank String name) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.startDate = startDate;
+		this.duration = duration;
+		this.rating = rating;
+		this.backgroundImage = backgroundImage;
+		this.objectifs = objectifs;
+		this.client = client;
+		this.coach = coach;
+		this.audiance = audiance;
+		this.name = name;
+	}
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,9 +67,15 @@ public class Weightlossprogram {
     
     @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinColumn(name = "audiance_id")
+
     @JsonIgnore
     private Audiance audiance;
 
+    
+    @NotBlank
+    private String name;
+    
+    
     
     public Weightlossprogram() {
     }
@@ -151,4 +175,12 @@ public class Weightlossprogram {
 	public void setAudiance(Audiance audiance) {
 		this.audiance = audiance;
 	}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

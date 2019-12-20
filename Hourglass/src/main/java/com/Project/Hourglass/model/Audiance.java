@@ -1,6 +1,7 @@
 package com.Project.Hourglass.model;
 
 import com.Project.Hourglass.model.enumeration.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -44,7 +45,9 @@ public class Audiance {
     @Column(nullable = false)
     private OverweightCause overweightCause;
     
+    @JsonIgnore
     @OneToOne(mappedBy = "audiance",fetch = FetchType.LAZY)
+    
     private Weightlossprogram weightLossProgram;
     
 
