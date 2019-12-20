@@ -6,19 +6,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Course {
 
-
-    public Course(@NotNull long id, @NotNull String name, @NotNull String description, @NotNull byte[] backGroundImage,
-			@NotNull float price, Coach coach, Client client) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.backGroundImage = backGroundImage;
-		this.price = price;
-		this.coach = coach;
-		this.client = client;
-	}
-
 	@NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +36,18 @@ public class Course {
     //lezem nzidou les videos eli fel Course ama ma3raftech kifech nestockihom eli 3andou fekra iguedha
 
     public Course() {
+    }
+
+    public Course(@NotNull long id, @NotNull String name, @NotNull String description, @NotNull byte[] backGroundImage,
+                  @NotNull float price, Coach coach, Client client) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.backGroundImage = backGroundImage;
+        this.price = price;
+        this.coach = coach;
+        this.client = client;
     }
 
 

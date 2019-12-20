@@ -12,21 +12,6 @@ import java.time.LocalDate;
 
 public class Weightlossprogram {
 
-    public Weightlossprogram(long id, @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
-			float rating, byte[] backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance) {
-		super();
-		this.id = id;
-		this.description = description;
-		this.startDate = startDate;
-		this.duration = duration;
-		this.rating = rating;
-		this.backgroundImage = backgroundImage;
-		this.objectifs = objectifs;
-		this.client = client;
-		this.coach = coach;
-		this.audiance = audiance;
-	}
-
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="weightlossprogram_id")
@@ -66,12 +51,24 @@ public class Weightlossprogram {
     @JoinColumn(name = "audiance_id")
     @JsonIgnore
     private Audiance audiance;
-    
-    
-    
-    
+
     
     public Weightlossprogram() {
+    }
+
+    public Weightlossprogram(long id, @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
+                             float rating, byte[] backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance) {
+        super();
+        this.id = id;
+        this.description = description;
+        this.startDate = startDate;
+        this.duration = duration;
+        this.rating = rating;
+        this.backgroundImage = backgroundImage;
+        this.objectifs = objectifs;
+        this.client = client;
+        this.coach = coach;
+        this.audiance = audiance;
     }
 
 
