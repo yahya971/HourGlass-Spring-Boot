@@ -2,11 +2,15 @@ package com.Project.Hourglass.Controllers;
 
 
 import com.Project.Hourglass.Repositories.CoachRepository;
+import com.Project.Hourglass.Repositories.WeightlossprogramRepository;
+import com.Project.Hourglass.model.Client;
 import com.Project.Hourglass.model.Coach;
 import com.Project.Hourglass.model.User;
+import com.Project.Hourglass.model.Weightlossprogram;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -18,6 +22,8 @@ public class CoachController {
 
     @Autowired
     public CoachRepository coachRepo;
+    @Autowired
+    public WeightlossprogramRepository wlpRepo;
 
     @GetMapping("/{id}")
     public Coach getCoach(@PathVariable Long id) {
@@ -60,5 +66,14 @@ public class CoachController {
             newCoach.setId(id);
             return coachRepo.save(newCoach);
         });
+    }
+    @GetMapping("{id}/clients")
+    public List<Client>getClients(@PathVariable Long id)
+    {   List<Client> clients=new ArrayList<Client>();
+        List<Weightlossprogram> p=wlpRepo.findProgramByCoachId(id);
+        for(Weightlossprogram w:p){
+            clients.add(w.getClient());
+        }
+        return clients;
     }
 }
