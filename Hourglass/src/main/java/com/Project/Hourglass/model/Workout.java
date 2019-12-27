@@ -14,12 +14,12 @@ import java.util.Set;
 @Entity
 public class Workout {
 
-    public Workout(long id,String name, @NotNull LocalTime startingHour, @NotNull LocalTime endingHour, String description,
+    public Workout(long id,String name, @NotNull LocalTime startingHour, @NotNull long duration, String description,
 			String equipment, Byte[] photo, float burnedCalories, Coach coach, Set<Sportsprogram> sportsPrograms) {
 		super();
 		this.id = id;
 		this.startingHour = startingHour;
-		this.endingHour = endingHour;
+		this.duration = duration;
 		this.description = description;
 		this.equipment = equipment;
 		this.photo = photo;
@@ -42,8 +42,8 @@ public class Workout {
     private LocalTime startingHour;
 
     @NotNull
-    @Column(name = "ending_hour", nullable = false)
-    private LocalTime endingHour;
+    @Column(name = "duration", nullable = false)
+    private long duration;
 
     @Lob
     private String description;
@@ -93,12 +93,12 @@ public class Workout {
         this.startingHour = startingHour;
     }
 
-    public LocalTime getEndingHour() {
-        return endingHour;
+    public long getDuration() {
+        return duration;
     }
 
-    public void setEndingHour(LocalTime endingHour) {
-        this.endingHour = endingHour;
+    public void setDuration(long duration) {
+        this.duration = duration;
     }
 
     public String getDescription() {
