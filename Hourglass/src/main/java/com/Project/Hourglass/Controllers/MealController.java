@@ -35,7 +35,10 @@ public class  MealController{
 	public Meal getMeal(@PathVariable Long id) {
 		return mealRepo.findById(id).get();	
 	}
-	
+	@GetMapping("/{id}/{coachId}")
+	public Meal getMealByCoachId(@PathVariable Long id,@PathVariable Long coachId) {
+		return mealRepo.findByIdAndCoachId(id, coachId);
+	}
 	@GetMapping("")
     public List<Meal> getAllMeals() {
         return mealRepo.findAll();

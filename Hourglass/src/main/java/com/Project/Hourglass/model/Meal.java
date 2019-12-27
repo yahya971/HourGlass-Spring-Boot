@@ -16,6 +16,26 @@ import java.util.Set;
 @JsonComponent
 public class Meal {
 
+
+    public Meal(long id,String name, @NotNull LocalTime time, String type, String description, float caloricValue, String photo,
+			@NotNull boolean isTaken, String recipe, String ingredients, Coach coach,
+			Set<Nutritionalprogram> nutritionalPrograms,Long preparationTime) {
+		super();
+		this.id = id;
+		this.time = time;
+		this.type = type;
+		this.description = description;
+		this.caloricValue = caloricValue;
+		this.photo = photo;
+		this.isTaken = isTaken;
+		this.recipe = recipe;
+		this.ingredients = ingredients;
+		this.coach = coach;
+		this.nutritionalPrograms = nutritionalPrograms;
+		this.name=name;
+		this.preparationTime=preparationTime;
+	}
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="meal_id")
@@ -31,7 +51,7 @@ public class Meal {
     private float caloricValue;
 
     @Lob
-    private byte[] photo;
+    private String photo;
 
     @NotNull
     @Column(nullable = false)
@@ -48,6 +68,8 @@ public class Meal {
 	@JsonIgnore
     private Coach coach;
     
+    private Long preparationTime;
+    
     
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
@@ -59,24 +81,6 @@ public class Meal {
     private Set<Nutritionalprogram> nutritionalPrograms=new HashSet<Nutritionalprogram>();
 
     public Meal() {
-    }
-
-    public Meal(long id,String name, @NotNull LocalTime time, String type, String description, float caloricValue, byte[] photo,
-                @NotNull boolean isTaken, String recipe, String ingredients, Coach coach,
-                Set<Nutritionalprogram> nutritionalPrograms) {
-        super();
-        this.id = id;
-        this.time = time;
-        this.type = type;
-        this.description = description;
-        this.caloricValue = caloricValue;
-        this.photo = photo;
-        this.isTaken = isTaken;
-        this.recipe = recipe;
-        this.ingredients = ingredients;
-        this.coach = coach;
-        this.nutritionalPrograms = nutritionalPrograms;
-        this.name=name;
     }
 
   
@@ -104,11 +108,11 @@ public class Meal {
         this.caloricValue = caloricValue;
     }
 
-    public byte[] getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -182,5 +186,15 @@ public class Meal {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+	public Long getPreparationTime() {
+		return preparationTime;
+	}
+
+
+	public void setPreparationTime(Long preparationTime) {
+		this.preparationTime = preparationTime;
 	}
 }

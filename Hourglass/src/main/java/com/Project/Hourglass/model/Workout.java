@@ -50,7 +50,7 @@ public class Workout {
     @Lob
     private String equipment;
     @Lob
-    private Byte[] photo;
+    private String photo;
 
 
     private float burnedCalories;
@@ -144,13 +144,13 @@ public class Workout {
 
 
 
-	public Byte[] getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 
 
 
-	public void setPhoto(Byte[] photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 
