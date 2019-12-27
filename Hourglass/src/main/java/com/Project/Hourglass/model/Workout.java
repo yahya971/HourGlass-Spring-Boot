@@ -15,7 +15,7 @@ import java.util.Set;
 public class Workout {
 
     public Workout(long id,String name, @NotNull LocalTime startingHour, @NotNull LocalTime endingHour, String description,
-			String equipment, Byte[] photo, float burnedCalories, Coach coach, Set<Sportsprogram> sportsPrograms) {
+			String equipment, String photo, float burnedCalories, Coach coach, Set<Sportsprogram> sportsPrograms) {
 		super();
 		this.id = id;
 		this.startingHour = startingHour;
@@ -51,7 +51,7 @@ public class Workout {
     @Lob
     private String equipment;
     @Lob
-    private Byte[] photo;
+    private String photo;
 
 
     private float burnedCalories;
@@ -147,13 +147,13 @@ public class Workout {
 
 
 
-	public Byte[] getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 
 
 
-	public void setPhoto(Byte[] photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 

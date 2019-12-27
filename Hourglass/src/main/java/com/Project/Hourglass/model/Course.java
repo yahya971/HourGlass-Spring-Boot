@@ -20,7 +20,7 @@ public class Course {
     private String description;
 
     @Lob
-    private byte[] backGroundImage;
+    private String backGroundImage;
 
     @NotNull
     private float price;
@@ -38,7 +38,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(@NotNull long id, @NotNull String name, @NotNull String description, @NotNull byte[] backGroundImage,
+    public Course(@NotNull long id, @NotNull String name, @NotNull String description, @NotNull String backGroundImage,
                   @NotNull float price, Coach coach, Client client) {
         super();
         this.id = id;
@@ -68,11 +68,11 @@ public class Course {
         this.description = description;
     }
 
-    public byte[] getBackGroundImage() {
+    public String getBackGroundImage() {
         return backGroundImage;
     }
 
-    public void setBackGroundImage(byte[] backGroundImage) {
+    public void setBackGroundImage(String backGroundImage) {
         this.backGroundImage = backGroundImage;
     }
 
