@@ -55,7 +55,7 @@ public class  WorkoutController{
             workout.setBurnedCalories(newWorkout.getBurnedCalories());
             workout.setDescription(newWorkout.getDescription());
             workout.setPhoto(newWorkout.getPhoto());
-            workout.setEndingHour(newWorkout.getEndingHour());
+            workout.setDuration(newWorkout.getDuration());
             workout.setStartingHour(newWorkout.getStartingHour());
             workout.setEquipment(newWorkout.getEquipment());
             
