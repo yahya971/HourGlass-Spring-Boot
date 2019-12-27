@@ -16,27 +16,6 @@ import java.util.Set;
 @JsonComponent
 public class Meal {
 
-    public Meal(long id,String name, @NotNull LocalTime time, String type, String description, float caloricValue, byte[] photo,
-			@NotNull boolean isTaken, String recipe, String ingredients, Coach coach,
-			Set<Nutritionalprogram> nutritionalPrograms) {
-		super();
-		this.id = id;
-		this.time = time;
-		this.type = type;
-		this.description = description;
-		this.caloricValue = caloricValue;
-		this.photo = photo;
-		this.isTaken = isTaken;
-		this.recipe = recipe;
-		this.ingredients = ingredients;
-		this.coach = coach;
-		this.nutritionalPrograms = nutritionalPrograms;
-		this.name=name;
-	}
-
-
-
-
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="meal_id")
@@ -80,6 +59,24 @@ public class Meal {
     private Set<Nutritionalprogram> nutritionalPrograms=new HashSet<Nutritionalprogram>();
 
     public Meal() {
+    }
+
+    public Meal(long id,String name, @NotNull LocalTime time, String type, String description, float caloricValue, byte[] photo,
+                @NotNull boolean isTaken, String recipe, String ingredients, Coach coach,
+                Set<Nutritionalprogram> nutritionalPrograms) {
+        super();
+        this.id = id;
+        this.time = time;
+        this.type = type;
+        this.description = description;
+        this.caloricValue = caloricValue;
+        this.photo = photo;
+        this.isTaken = isTaken;
+        this.recipe = recipe;
+        this.ingredients = ingredients;
+        this.coach = coach;
+        this.nutritionalPrograms = nutritionalPrograms;
+        this.name=name;
     }
 
   

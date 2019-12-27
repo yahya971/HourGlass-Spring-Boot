@@ -14,22 +14,6 @@ import java.util.Set;
 @Entity
 public class Workout {
 
-    public Workout(long id,String name, @NotNull LocalTime startingHour, @NotNull LocalTime endingHour, String description,
-			String equipment, Byte[] photo, float burnedCalories, Coach coach, Set<Sportsprogram> sportsPrograms) {
-		super();
-		this.id = id;
-		this.startingHour = startingHour;
-		this.endingHour = endingHour;
-		this.description = description;
-		this.equipment = equipment;
-		this.photo = photo;
-		this.burnedCalories = burnedCalories;
-		this.coach = coach;
-		this.sportsPrograms = sportsPrograms;
-		this.name=name;
-	}
-
-
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="workout_id")
@@ -73,6 +57,21 @@ public class Workout {
     private Set<Sportsprogram> sportsPrograms=new HashSet<Sportsprogram>();
 
     public Workout() {
+    }
+
+    public Workout(long id,String name, @NotNull LocalTime startingHour, @NotNull LocalTime endingHour, String description,
+                   String equipment, Byte[] photo, float burnedCalories, Coach coach, Set<Sportsprogram> sportsPrograms) {
+        super();
+        this.id = id;
+        this.startingHour = startingHour;
+        this.endingHour = endingHour;
+        this.description = description;
+        this.equipment = equipment;
+        this.photo = photo;
+        this.burnedCalories = burnedCalories;
+        this.coach = coach;
+        this.sportsPrograms = sportsPrograms;
+        this.name=name;
     }
 
 

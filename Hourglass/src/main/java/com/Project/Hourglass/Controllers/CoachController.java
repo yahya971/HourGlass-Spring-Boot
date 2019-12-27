@@ -77,9 +77,9 @@ public class CoachController {
         return clients;
     }
 
-    @GetMapping("programs/{id}")
+    /*@GetMapping("programs/{id}")
     public List<Weightlossprogram>getProgrames(@PathVariable Long id)
     {
         return wlpRepo.findProgramByCoachId(id);
-    }
+    }*/
 }

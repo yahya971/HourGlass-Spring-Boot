@@ -72,4 +72,9 @@ public class  MealController{
             return mealRepo.save(newmeal);
         });
     }
+
+    @GetMapping("/byCoach/{id}")
+    public List<Meal> getMealsByCoachId( @PathVariable Long id) {
+	    return  this.mealRepo.findAllByCoachId(id);
+    }
 }
