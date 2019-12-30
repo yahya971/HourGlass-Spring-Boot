@@ -32,6 +32,13 @@ public class  WorkoutController{
 	public Workout getWorkout(@PathVariable Long id) {
 		return workoutRepo.findById(id).get();
 		}
+	
+	@GetMapping("/byCoach/{id}")
+	public List<Workout> getWorkouts(@PathVariable Long id) {
+		return workoutRepo.findByCoachId(id);
+		}
+	
+	
 	@GetMapping("")
     public List<Workout> getAllMeals() {
         return workoutRepo.findAll();
