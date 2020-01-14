@@ -107,7 +107,7 @@ public class Meal {
     }
 
     public Meal(String name, @NotNull LocalTime time, String type, String description, float caloricValue,
-                String carbKacl, String energKcal, String fatKcal, String protKcal, String totalWeight,
+                String carbKcal, String energKcal, String fatKcal, String protKcal, String totalWeight,
                 String dietLabels, String healthLabels, String calcium, String carbs, String cholesterol,
                 String fat, String potassium, String magnesium, String protein, String sugar, String vitE,
                 String vitA, String vitB6, String vitD, String vitK, String water, String photo,
@@ -118,7 +118,7 @@ public class Meal {
         this.type = type;
         this.description = description;
         this.caloricValue = caloricValue;
-        this.carbKacl = carbKacl;
+        this.carbKcal = carbKcal;
         this.energKcal = energKcal;
         this.fatKcal = fatKcal;
         this.protKcal = protKcal;
@@ -172,12 +172,12 @@ public class Meal {
         this.caloricValue = caloricValue;
     }
 
-    public String getCarbKacl() {
-        return carbKacl;
+    public String getCarbKcal() {
+        return carbKcal;
     }
 
-    public void setCarbKacl(String carbKacl) {
-        this.carbKacl = carbKacl;
+    public void setCarbKcal(String carbKcal) {
+        this.carbKcal = carbKcal;
     }
 
     public String getEnergKcal() {
