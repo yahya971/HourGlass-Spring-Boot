@@ -22,8 +22,8 @@ public class FollowController {
         return followRepo.findById(id).get();
     }
 
-    @GetMapping("")
-    public List<Follow> getAllFollow() {
+    @GetMapping("/byProgramId/{id}")
+    public List<Follow> getAllFollow(@PathVariable Long id) {
         return followRepo.findAll();
     }
 
@@ -42,8 +42,6 @@ public class FollowController {
         return followRepo.findById(id).map(follow -> {
             follow.setComment(newfollow.getComment());
             follow.setDay(newfollow.getDay());
-            follow.setProgression(newfollow.getProgression());
-            follow.setRealised(newfollow.getRealised());
             return followRepo.save(follow);
         }).orElseGet(() -> {
             newfollow.setId(id);

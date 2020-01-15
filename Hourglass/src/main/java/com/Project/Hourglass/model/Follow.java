@@ -10,17 +10,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Follow {
 
-    public Follow(@NotNull long id, @NotNull long day, @NotNull boolean realised, @NotNull String comment,
-			@NotNull String progression, Weightlossprogram weightLossProgram) {
-		super();
-		this.follow_id = id;
-		this.day = day;
-		this.realised = realised;
-		this.comment = comment;
-		this.progression = progression;
-		this.weightLossProgram = weightLossProgram;
-	}
-
 	@NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,15 +19,19 @@ public class Follow {
     @NotNull
     private long day;
 
-    @NotNull
-    private boolean realised;
+    private String question1;
+
+    private String question2;
+
+    private String question3;
+
+    private String question4;
+
+    private boolean consulted;
 
     @Lob
     @NotNull
     private String comment;
-
-    @NotNull
-    private String progression;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -46,6 +39,18 @@ public class Follow {
     private Weightlossprogram weightLossProgram;
 
     public Follow() {
+    }
+
+    public Follow(@NotNull long day, String question1, String question2, String question3, String question4,
+                  @NotNull String comment, boolean consulted, Weightlossprogram weightLossProgram) {
+        this.day = day;
+        this.question1 = question1;
+        this.question2 = question2;
+        this.question3 = question3;
+        this.question4 = question4;
+        this.consulted = consulted;
+        this.comment = comment;
+        this.weightLossProgram = weightLossProgram;
     }
 
     public long getId() {
@@ -64,28 +69,12 @@ public class Follow {
         this.day = day;
     }
 
-    public boolean getRealised() {
-        return realised;
-    }
-
-    public void setRealised(boolean realised) {
-        this.realised = realised;
-    }
-
     public String getComment() {
         return comment;
     }
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public String getProgression() {
-        return progression;
-    }
-
-    public void setProgression(String progression) {
-        this.progression = progression;
     }
 
 	public Weightlossprogram getWeightLossProgram() {
@@ -95,4 +84,44 @@ public class Follow {
 	public void setWeightLossProgram(Weightlossprogram weightLossProgram) {
 		this.weightLossProgram = weightLossProgram;
 	}
+
+    public String getQuestion1() {
+        return question1;
+    }
+
+    public void setQuestion1(String question1) {
+        this.question1 = question1;
+    }
+
+    public String getQuestion2() {
+        return question2;
+    }
+
+    public void setQuestion2(String question2) {
+        this.question2 = question2;
+    }
+
+    public String getQuestion3() {
+        return question3;
+    }
+
+    public void setQuestion3(String question3) {
+        this.question3 = question3;
+    }
+
+    public String getQuestion4() {
+        return question4;
+    }
+
+    public void setQuestion4(String question4) {
+        this.question4 = question4;
+    }
+
+    public boolean isConsulted() {
+        return consulted;
+    }
+
+    public void setConsulted(boolean consulted) {
+        this.consulted = consulted;
+    }
 }
