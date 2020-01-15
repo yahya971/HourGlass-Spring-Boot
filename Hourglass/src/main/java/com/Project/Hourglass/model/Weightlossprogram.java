@@ -14,10 +14,10 @@ import java.time.LocalDate;
 public class Weightlossprogram {
 
 
-    public Weightlossprogram(long id, @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
-			float rating, byte[] backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance, @NotBlank String name) {
+    public Weightlossprogram( @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
+			float rating, String backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance, @NotBlank String name) {
 		super();
-		this.id = id;
+
 		this.description = description;
 		this.startDate = startDate;
 		this.duration = duration;
@@ -41,7 +41,7 @@ public class Weightlossprogram {
     private String description;
 
     
-    @Column(name = "start_date", nullable = false)
+    @Column(name = "start_date", nullable = true)
     private LocalDate startDate;
 
     @NotNull
@@ -52,7 +52,7 @@ public class Weightlossprogram {
 
     @Lob
     @Column(name = "background_image")
-    private byte[] backgroundImage;
+    private String backgroundImage;
 
     @Lob
     private String objectifs;
@@ -81,7 +81,7 @@ public class Weightlossprogram {
     }
 
     public Weightlossprogram(long id, @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
-                             float rating, byte[] backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance) {
+                             float rating, String backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance) {
         super();
         this.id = id;
         this.description = description;
@@ -136,11 +136,11 @@ public class Weightlossprogram {
         this.rating = rating;
     }
 
-    public byte[] getBackgroundImage() {
+    public String getBackgroundImage() {
         return backgroundImage;
     }
 
-    public void setBackgroundImage(byte[] backgroundImage) {
+    public void setBackgroundImage(String backgroundImage) {
         this.backgroundImage = backgroundImage;
     }
 

@@ -14,8 +14,8 @@ import javax.validation.constraints.*;
 public class Client extends User {
 
     public Client(@NotNull long height, @NotNull float currentWeight, @NotNull float desiredWeight,
-			FatStorage fatDistribution, Frame frame, Silhouette silhouette, Sex sex, @NotNull int age, byte[] photo,
-			Weightlossprogram program) {
+			FatStorage fatDistribution, Frame frame, Silhouette silhouette, Sex sex, @NotNull int age, byte[] photo
+			) {
 		super();
 		this.height = height;
 		this.currentWeight = currentWeight;
@@ -26,7 +26,7 @@ public class Client extends User {
 		this.sex = sex;
 		this.age = age;
 		this.photo = photo;
-		this.program = program;
+
 	}
 
 	@NotNull
@@ -58,9 +58,7 @@ public class Client extends User {
     @Lob
     private byte[] photo;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "wlprogram_id", nullable = true)
-    private Weightlossprogram program;
+
     
 
     public Client() {
@@ -166,11 +164,5 @@ public class Client extends User {
         this.photo = photo;
     }
 
-	public Weightlossprogram getProgram() {
-		return program;
-	}
 
-	public void setProgram(Weightlossprogram program) {
-		this.program = program;
-	}
 }

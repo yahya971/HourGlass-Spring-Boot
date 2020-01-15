@@ -56,7 +56,7 @@ public class Audiance {
 
     public Audiance(@NotEmpty Sex sex, @NotEmpty float height, @NotEmpty float objectiveWeight,
                     @NotEmpty Frame frame, @NotEmpty FatStorage fatStorage, @NotEmpty Silhouette silhouette,
-                    @NotEmpty OverweightCause overweightCause, Weightlossprogram weightLossProgram) {
+                    @NotEmpty OverweightCause overweightCause) {
         this.sex = sex;
         this.height = height;
         this.objectiveWeight = objectiveWeight;
@@ -64,7 +64,6 @@ public class Audiance {
         this.fatStorage = fatStorage;
         this.silhouette = silhouette;
         this.overweightCause = overweightCause;
-        this.weightLossProgram = weightLossProgram;
     }
 
     public long getId() {
