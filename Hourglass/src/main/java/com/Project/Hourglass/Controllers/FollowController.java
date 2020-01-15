@@ -24,7 +24,12 @@ public class FollowController {
 
     @GetMapping("/byProgramId/{id}")
     public List<Follow> getAllFollow(@PathVariable Long id) {
-        return followRepo.findAll();
+        return followRepo.findAllByWeightLossProgram(id);
+    }
+
+    @GetMapping("/byProgramIdAndDay/{id}/{day}")
+    public Follow getFollowByProgramAndDay(@PathVariable Long id, @PathVariable String day) {
+        return followRepo.findByWeightLossProgramAndAndDay(id, day);
     }
 
     @PostMapping("/addFollow")
