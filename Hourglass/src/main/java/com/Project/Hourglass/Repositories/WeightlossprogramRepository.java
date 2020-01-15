@@ -6,6 +6,7 @@ import com.Project.Hourglass.model.Weightlossprogram;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface WeightlossprogramRepository extends JpaRepository<Weightlossprogram,Long> {
 
@@ -15,4 +16,7 @@ public interface WeightlossprogramRepository extends JpaRepository<Weightlosspro
     
     //@Query("select p from Weightlossprogram p where p.client.id = ?1")
     Weightlossprogram findProgramByClientId(Long id);
+
+
+	Optional<Weightlossprogram> findByName(String name);
 }
