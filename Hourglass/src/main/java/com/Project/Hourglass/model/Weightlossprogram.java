@@ -40,7 +40,7 @@ public class Weightlossprogram {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @NotNull
+    
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
 
@@ -58,7 +58,7 @@ public class Weightlossprogram {
     private String objectifs;
     
     @ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "client_id", nullable = false)
+	@JoinColumn(name = "client_id", nullable = true)
     private Client client;
     
     @ManyToOne(fetch = FetchType.LAZY)
