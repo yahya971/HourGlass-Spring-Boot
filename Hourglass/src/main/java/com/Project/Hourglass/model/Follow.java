@@ -17,7 +17,7 @@ public class Follow {
     private long follow_id;
 
     @NotNull
-    private long day;
+    private String day;
 
     private String question1;
 
@@ -29,8 +29,9 @@ public class Follow {
 
     private boolean consulted;
 
+    private float weight;
+
     @Lob
-    @NotNull
     private String comment;
 
 
@@ -41,8 +42,8 @@ public class Follow {
     public Follow() {
     }
 
-    public Follow(@NotNull long day, String question1, String question2, String question3, String question4,
-                  @NotNull String comment, boolean consulted, Weightlossprogram weightLossProgram) {
+    public Follow(@NotNull String day, String question1, String question2, String question3, String question4,
+                   String comment, float weight, boolean consulted, Weightlossprogram weightLossProgram) {
         this.day = day;
         this.question1 = question1;
         this.question2 = question2;
@@ -50,6 +51,7 @@ public class Follow {
         this.question4 = question4;
         this.consulted = consulted;
         this.comment = comment;
+        this.weight = weight;
         this.weightLossProgram = weightLossProgram;
     }
 
@@ -61,11 +63,11 @@ public class Follow {
         this.follow_id = id;
     }
 
-    public long getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(long day) {
+    public void setDay(String day) {
         this.day = day;
     }
 
@@ -123,5 +125,13 @@ public class Follow {
 
     public void setConsulted(boolean consulted) {
         this.consulted = consulted;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
     }
 }
