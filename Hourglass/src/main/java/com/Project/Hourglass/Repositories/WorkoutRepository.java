@@ -12,4 +12,6 @@ public interface WorkoutRepository extends JpaRepository<Workout,Long> {
 	public List<Workout> findByCoachId(Long id);
 
 	public Optional<Workout> findByName(String m);
+
+	public Workout findByIdAndCoachId(Long id, Long coachId);
 }
