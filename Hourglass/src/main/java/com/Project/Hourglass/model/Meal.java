@@ -96,8 +96,7 @@ public class Meal {
     
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-                CascadeType.MERGE,
-                CascadeType.PERSIST
+            		CascadeType.MERGE,CascadeType.REFRESH
             },
             mappedBy = "meals")
     @JsonIgnore

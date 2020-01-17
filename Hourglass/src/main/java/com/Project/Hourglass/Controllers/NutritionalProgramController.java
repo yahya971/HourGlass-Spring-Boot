@@ -5,9 +5,12 @@ import org.springframework.web.bind.annotation.*;
 
 import com.Project.Hourglass.Repositories.MealRepository;
 import com.Project.Hourglass.Repositories.NutritionalprogramRepository;
+import com.Project.Hourglass.Repositories.WeightlossprogramRepository;
 import com.Project.Hourglass.model.Dayprogram;
 import com.Project.Hourglass.model.Meal;
 import com.Project.Hourglass.model.Nutritionalprogram;
+import com.Project.Hourglass.model.Sportsprogram;
+import com.Project.Hourglass.model.Weightlossprogram;
 
 import java.util.List;
 
@@ -25,7 +28,8 @@ public class  NutritionalProgramController{
 	public NutritionalprogramRepository nutProgramRepo;
 	@Autowired
 	public MealRepository mealRepo;
-	
+	@Autowired
+	WeightlossprogramRepository wlpRepo;
 
 	@GetMapping("/{id}")
 	public Nutritionalprogram getNutritionalProgram(@PathVariable Long id) {
@@ -77,8 +81,17 @@ public class  NutritionalProgramController{
         return nutProgramRepo.findNutritionalprogamByWeightlossprogramId(id);
     }
 
+    
+    
+	@PostMapping("/addNutritional/{wlpId}")
+	public Nutritionalprogram save(@RequestBody Nutritionalprogram newNutritionalprogram,@PathVariable Long wlpId) {
+		Weightlossprogram weightLossProgram=wlpRepo.findById(wlpId).get();
+		newNutritionalprogram.setWeightLossProgram(weightLossProgram);
+		return nutProgramRepo.save(newNutritionalprogram);
+	}
     @GetMapping("/byWeightLossProgramAndDay/{id}/{day}")
 	public Nutritionalprogram getNutritionalProgram(@PathVariable Long id, @PathVariable String day){
 		return nutProgramRepo.findNutritionalprogramByWeightLossProgramAndAndDay(id, day);
+
 	}
 }

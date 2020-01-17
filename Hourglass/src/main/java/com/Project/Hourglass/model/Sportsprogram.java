@@ -27,8 +27,8 @@ public class Sportsprogram extends Dayprogram {
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
+            		CascadeType.MERGE,CascadeType.REFRESH,
+                
             })
     @JoinTable(name = "workout_sportsprogram",
             joinColumns = { @JoinColumn(name = "sport_program_id") },

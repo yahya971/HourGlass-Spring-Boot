@@ -25,8 +25,7 @@ public class Nutritionalprogram extends Dayprogram {
     
     @ManyToMany(fetch = FetchType.LAZY,
     cascade = {
-        CascadeType.PERSIST,
-        CascadeType.MERGE
+    		CascadeType.MERGE,CascadeType.REFRESH
     })
 @JoinTable(name = "Meal_Nutritionalprogram",
     joinColumns = { @JoinColumn(name = "nutritional_program_id") },
