@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Weightlossprogram {
 
 
-    public Weightlossprogram( @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
+    public Weightlossprogram( @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration, float price,
 			float rating, String backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance, @NotBlank String name) {
 		super();
 
@@ -28,6 +28,7 @@ public class Weightlossprogram {
 		this.coach = coach;
 		this.audiance = audiance;
 		this.name = name;
+		this.price = price;
 	}
 
 	@Id
@@ -74,6 +75,8 @@ public class Weightlossprogram {
     
     @NotBlank
     private String name;
+
+    private float price;
     
     
     
@@ -182,5 +185,13 @@ public class Weightlossprogram {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }
