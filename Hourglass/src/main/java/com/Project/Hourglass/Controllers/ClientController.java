@@ -22,6 +22,12 @@ public class ClientController {
     public Client getClient(@PathVariable Long id){
         return clientRepo.findById(id).get();
     }
+
+    @GetMapping("/byUsername/{username}")
+    public Client getClientByUsername(@PathVariable String username) {
+        return clientRepo.findByUsername(username).get();
+    }
+
     @GetMapping("")
     public List<Client> getAllclient() {
         return clientRepo.findAll();
