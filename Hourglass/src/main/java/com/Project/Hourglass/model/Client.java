@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 public class Client extends User {
 
     public Client(@NotNull long height, @NotNull float currentWeight, @NotNull float desiredWeight,
-			FatStorage fatDistribution, Frame frame, Silhouette silhouette, Sex sex, @NotNull int age, byte[] photo
+			FatStorage fatDistribution, Frame frame, Silhouette silhouette, Sex sex, @NotNull int age, String photo
 			) {
 		super();
 		this.height = height;
@@ -56,7 +56,7 @@ public class Client extends User {
     private int age;
 
     @Lob
-    private byte[] photo;
+    private String photo;
     
 
     
@@ -68,7 +68,7 @@ public class Client extends User {
                   @NotBlank @Size(min = 3, max = 50) String name, @NotBlank @Size(min = 3, max = 50) String lastname,
                   @NotBlank @Size(min = 6, max = 100) String password, @NotEmpty long height, @NotEmpty float currentWeight,
                   @NotEmpty float desiredWeight, @NotEmpty FatStorage fatDistribution, @NotEmpty Frame frame,
-                  @NotEmpty Silhouette silhouette, @NotEmpty Sex sex, @NotBlank int age, byte[] photo) {
+                  @NotEmpty Silhouette silhouette, @NotEmpty Sex sex, @NotBlank int age, String photo) {
 
         super(username, email, name, lastname, password);
         this.height = height;
@@ -156,11 +156,11 @@ public class Client extends User {
         this.age = age;
     }
 
-    public byte[] getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 

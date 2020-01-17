@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Project.Hourglass.Repositories.ClientRepository;
 import com.Project.Hourglass.Repositories.CoachRepository;
+import com.Project.Hourglass.Repositories.DayprogramRepository;
 import com.Project.Hourglass.Repositories.MealRepository;
 import com.Project.Hourglass.Repositories.NutritionalprogramRepository;
 import com.Project.Hourglass.Repositories.SportsprogramRepository;
@@ -20,6 +21,7 @@ import com.Project.Hourglass.Repositories.WorkoutRepository;
 import com.Project.Hourglass.model.Audiance;
 import com.Project.Hourglass.model.Client;
 import com.Project.Hourglass.model.Coach;
+import com.Project.Hourglass.model.Dayprogram;
 import com.Project.Hourglass.model.Meal;
 import com.Project.Hourglass.model.Nutritionalprogram;
 import com.Project.Hourglass.model.Sportsprogram;
@@ -54,7 +56,12 @@ public class WeightlossprogramController {
 	public NutritionalprogramRepository npRepo;
 	@Autowired
 	public SportsprogramRepository spRepo;
-	
+	@Autowired
+	public DayprogramRepository dayProgramRepo;
+	@Autowired
+	public NutritionalprogramRepository nutRepo;
+	@Autowired
+	public SportsprogramRepository sportRepo;
 	
 	//lezemna f kol return n specifiw l objet li bech nraj3ouh
 	@GetMapping("")
@@ -82,7 +89,8 @@ public class WeightlossprogramController {
 	}
 	
 	@PostMapping("/{coachId}")
-	public String SaveProgram(@PathVariable Long coachId,@RequestBody ProgramPogo p) {
+	public Weightlossprogram SaveProgram(@PathVariable Long coachId,@RequestBody ProgramPogo p) {
+
 		Client client=clientRepo.findById(Long.valueOf(999)).get();
 		Coach coach=coachRepo.findById(coachId).get();
 		Audiance audiance=new Audiance(p.audiance.sex,p.audiance.height,p.audiance.objectiveWeight,p.audiance.frame,p.audiance.fatStorage,p.audiance.silhouette,p.audiance.overWeightCause);
@@ -109,7 +117,35 @@ public class WeightlossprogramController {
 			Sportsprogram spToSave=new Sportsprogram(workouts,wp.day,wp.description,wlp,wp.name);
 			spRepo.save(spToSave);
 		}
-		return "OK: "+coachId;
+		return programToSave;
 	}
+	@GetMapping("affecter/{clientId}/{programId}")
+	public Weightlossprogram affecterProgramme(@PathVariable Long clientId,@PathVariable Long programId ) {
+		Client client=clientRepo.findById(clientId).get();
+		Weightlossprogram program= wlpRepo.findById(programId).get();
+		Weightlossprogram newProgram=new Weightlossprogram(program.getDescription(),LocalDate.now().plusDays(program.getDuration()),program.getDuration(),program.getRating(),program.getBackgroundImage(),program.getObjectifs(),null,program.getCoach(),program.getAudiance(),program.getName(),program.getPrice());
+		newProgram.setClient(client);
+		wlpRepo.save(newProgram);
+		program=wlpRepo.findProgramByClientId(clientId);
+		List<Nutritionalprogram> nutPrograms=nutRepo.findNutritionalprogamByWeightlossprogramId(programId);
+		List<Sportsprogram> sportsPrograms=sportRepo.findSportsprogramByWeightlossprogramId(programId);
 
+		for(Nutritionalprogram p:nutPrograms) {
+			Nutritionalprogram newNut=new Nutritionalprogram(p.getMealsNumber(),p.getMeals(),p.getDay(),p.getDescription(),p.getWeightLossProgram(),p.getName());
+			newNut.setWeightLossProgram(newProgram);
+			
+			nutRepo.save(p);
+			
+		}
+		for(Sportsprogram p:sportsPrograms) {
+			Sportsprogram newSp=new Sportsprogram(p.getWorkouts(),p.getDay(),p.getDescription(),program,p.getName());
+		
+			
+			sportRepo.save(p);
+			
+		}
+		return program;
+		
+		
+	}
 }

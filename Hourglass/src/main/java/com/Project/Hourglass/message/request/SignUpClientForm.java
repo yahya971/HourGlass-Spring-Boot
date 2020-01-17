@@ -39,7 +39,7 @@ public class SignUpClientForm extends SignUpForm {
     private int age;
 
     @Lob
-    private byte[] photo;
+    private String photo;
 
     public long getHeight() {
         return height;
@@ -105,11 +105,11 @@ public class SignUpClientForm extends SignUpForm {
         this.age = age;
     }
 
-    public byte[] getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 }
