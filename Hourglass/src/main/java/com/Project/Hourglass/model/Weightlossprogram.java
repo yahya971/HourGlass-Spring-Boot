@@ -14,8 +14,9 @@ import java.time.LocalDate;
 public class Weightlossprogram {
 
 
-    public Weightlossprogram( @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration, float price,
-			float rating, String backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance, @NotBlank String name) {
+    public Weightlossprogram( @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
+			float rating, String backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance,
+                              @NotBlank String name, float price) {
 		super();
 
 		this.description = description;
