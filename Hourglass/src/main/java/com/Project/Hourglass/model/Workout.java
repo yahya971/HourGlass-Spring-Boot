@@ -65,8 +65,7 @@ public class Workout {
     @JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY,
     cascade = {
-        CascadeType.PERSIST,
-        CascadeType.MERGE
+    		CascadeType.MERGE,CascadeType.REFRESH
     },
     mappedBy = "workouts")
     private Set<Sportsprogram> sportsPrograms=new HashSet<Sportsprogram>();

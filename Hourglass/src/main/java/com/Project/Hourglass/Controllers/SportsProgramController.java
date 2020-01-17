@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Project.Hourglass.Repositories.SportsprogramRepository;
+import com.Project.Hourglass.Repositories.WeightlossprogramRepository;
 import com.Project.Hourglass.Repositories.WorkoutRepository;
 import com.Project.Hourglass.model.Dayprogram;
 import com.Project.Hourglass.model.Meal;
 import com.Project.Hourglass.model.Nutritionalprogram;
 import com.Project.Hourglass.model.Sportsprogram;
+import com.Project.Hourglass.model.Weightlossprogram;
 import com.Project.Hourglass.model.Workout;
 
 @CrossOrigin
@@ -29,6 +31,8 @@ public class  SportsProgramController{
 	SportsprogramRepository sportsprogramRepo;
 	@Autowired
 	WorkoutRepository workoutRepo;
+	@Autowired
+	WeightlossprogramRepository wlpRepo;
 	
 	@GetMapping("/{id}")
 	public Sportsprogram getProgram(@PathVariable Long id) {
@@ -51,6 +55,15 @@ public class  SportsProgramController{
 			
 		}
 		return sportsprogramRepo.save(newSportsprogram);
+	}
+	
+	
+	@PostMapping("/addSports/{wlpId}")
+	public Sportsprogram save(@RequestBody Sportsprogram newSportsprogram,@PathVariable Long wlpId) {
+		Weightlossprogram weightLossProgram=wlpRepo.findById(wlpId).get();
+		newSportsprogram.setWeightLossProgram(weightLossProgram);
+		return sportsprogramRepo.save(newSportsprogram);
+		
 	}
 
 	@DeleteMapping("delSportsProgram/{id}")
