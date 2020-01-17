@@ -17,6 +17,9 @@ public interface WeightlossprogramRepository extends JpaRepository<Weightlosspro
     @Query("select p from Weightlossprogram p where p.client.id = ?1 and p.endDate > current_date ")
     Weightlossprogram findProgramByClientId(Long id);
 
+    @Query("select p from Weightlossprogram p where p.client.id = ?1 and p.endDate < current_date ")
+    List<Weightlossprogram> findOldProgramsByClientId(Long id);
+
 
 	Optional<Weightlossprogram> findByName(String name);
 }

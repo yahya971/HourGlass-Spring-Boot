@@ -53,6 +53,11 @@ public class ClientController {
             client.setHeight(newclient.getHeight());
             client.setCurrentWeight(newclient.getCurrentWeight());
             client.setUsername(newclient.getUsername());
+            client.setFatDistribution(newclient.getFatDistribution());
+            client.setSilhouette(newclient.getSilhouette());
+            client.setFrame(client.getFrame());
+            client.setPassword(client.getPassword());
+            client.setDesiredWeight(client.getDesiredWeight());
             return clientRepo.save(client);
         }).orElseGet(() -> {
             newclient.setId(id);

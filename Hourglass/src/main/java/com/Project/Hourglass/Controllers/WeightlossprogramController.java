@@ -77,6 +77,11 @@ public class WeightlossprogramController {
 	public Weightlossprogram getProgramByClientId(@PathVariable Long id){
 		return wlpRepo.findProgramByClientId(id);
 	}
+
+	@GetMapping("old/byClient/{id}")
+	public List<Weightlossprogram> getProgramsByClientId(@PathVariable Long id) {
+		return wlpRepo.findOldProgramsByClientId(id);
+	}
 	
 	@PostMapping("/{coachId}")
 	public String SaveProgram(@PathVariable Long coachId,@RequestBody ProgramPogo p) {

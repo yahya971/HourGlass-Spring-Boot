@@ -76,4 +76,9 @@ public class  NutritionalProgramController{
     public List<Nutritionalprogram> getAllPrograms(@PathVariable Long id) {
         return nutProgramRepo.findNutritionalprogamByWeightlossprogramId(id);
     }
+
+    @GetMapping("/byWeightLossProgramAndDay/{id}/{day}")
+	public Nutritionalprogram getNutritionalProgram(@PathVariable Long id, @PathVariable String day){
+		return nutProgramRepo.findNutritionalprogramByWeightLossProgramAndAndDay(id, day);
+	}
 }
