@@ -31,6 +31,11 @@ public class CoachController {
         return coach;
     }
 
+    @GetMapping("/byUsername/{username}")
+    public Coach getCoachByUsername(@PathVariable String username) {
+        return coachRepo.findByUsername(username).get();
+    }
+
     @GetMapping("")
     public List<Coach> getAllCoach() {
         return coachRepo.findAll();

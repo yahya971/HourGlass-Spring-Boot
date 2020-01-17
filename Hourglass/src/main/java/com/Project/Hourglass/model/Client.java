@@ -1,5 +1,6 @@
 package com.Project.Hourglass.model;
 
+import com.Project.Hourglass.Repositories.WeightlossprogramRepository;
 import com.Project.Hourglass.model.enumeration.FatStorage;
 import com.Project.Hourglass.model.enumeration.Frame;
 import com.Project.Hourglass.model.enumeration.Sex;
@@ -12,7 +13,23 @@ import javax.validation.constraints.*;
 @PrimaryKeyJoinColumn(name = "client_id")
 public class Client extends User {
 
-    @NotNull
+    public Client(@NotNull long height, @NotNull float currentWeight, @NotNull float desiredWeight,
+			FatStorage fatDistribution, Frame frame, Silhouette silhouette, Sex sex, @NotNull int age, byte[] photo
+			) {
+		super();
+		this.height = height;
+		this.currentWeight = currentWeight;
+		this.desiredWeight = desiredWeight;
+		this.fatDistribution = fatDistribution;
+		this.frame = frame;
+		this.silhouette = silhouette;
+		this.sex = sex;
+		this.age = age;
+		this.photo = photo;
+
+	}
+
+	@NotNull
     private long height;
 
     @NotNull
@@ -40,6 +57,8 @@ public class Client extends User {
 
     @Lob
     private byte[] photo;
+    
+
     
 
     public Client() {
@@ -144,4 +163,6 @@ public class Client extends User {
     public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
+
+
 }

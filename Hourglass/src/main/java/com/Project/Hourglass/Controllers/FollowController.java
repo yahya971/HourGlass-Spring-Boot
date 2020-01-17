@@ -22,9 +22,14 @@ public class FollowController {
         return followRepo.findById(id).get();
     }
 
-    @GetMapping("")
-    public List<Follow> getAllFollow() {
-        return followRepo.findAll();
+    @GetMapping("/byProgramId/{id}")
+    public List<Follow> getAllFollow(@PathVariable Long id) {
+        return followRepo.findAllByWeightLossProgram(id);
+    }
+
+    @GetMapping("/byProgramIdAndDay/{id}/{day}")
+    public Follow getFollowByProgramAndDay(@PathVariable Long id, @PathVariable String day) {
+        return followRepo.findByWeightLossProgramAndAndDay(id, day);
     }
 
     @PostMapping("/addFollow")
@@ -42,8 +47,7 @@ public class FollowController {
         return followRepo.findById(id).map(follow -> {
             follow.setComment(newfollow.getComment());
             follow.setDay(newfollow.getDay());
-            follow.setProgression(newfollow.getProgression());
-            follow.setRealised(newfollow.getRealised());
+            follow.setConsulted(newfollow.isConsulted());
             return followRepo.save(follow);
         }).orElseGet(() -> {
             newfollow.setId(id);

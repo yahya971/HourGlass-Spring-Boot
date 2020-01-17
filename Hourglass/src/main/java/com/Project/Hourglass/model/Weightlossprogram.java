@@ -14,12 +14,12 @@ import java.time.LocalDate;
 public class Weightlossprogram {
 
 
-    public Weightlossprogram(long id, @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
-			float rating, byte[] backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance, @NotBlank String name) {
+    public Weightlossprogram( @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
+			float rating, String backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance, @NotBlank String name) {
 		super();
-		this.id = id;
+
 		this.description = description;
-		this.startDate = startDate;
+		this.endDate = startDate;
 		this.duration = duration;
 		this.rating = rating;
 		this.backgroundImage = backgroundImage;
@@ -40,9 +40,9 @@ public class Weightlossprogram {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @NotNull
-    @Column(name = "start_date", nullable = false)
-    private LocalDate startDate;
+    
+    @Column(name = "end_date", nullable = true)
+    private LocalDate endDate;
 
     @NotNull
     @Column(name = "duration", nullable = false)
@@ -52,13 +52,13 @@ public class Weightlossprogram {
 
     @Lob
     @Column(name = "background_image")
-    private byte[] backgroundImage;
+    private String backgroundImage;
 
     @Lob
     private String objectifs;
     
     @ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "client_id", nullable = false)
+	@JoinColumn(name = "client_id", nullable = true)
     private Client client;
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -81,11 +81,11 @@ public class Weightlossprogram {
     }
 
     public Weightlossprogram(long id, @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
-                             float rating, byte[] backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance) {
+                             float rating, String backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance) {
         super();
         this.id = id;
         this.description = description;
-        this.startDate = startDate;
+        this.endDate = startDate;
         this.duration = duration;
         this.rating = rating;
         this.backgroundImage = backgroundImage;
@@ -112,12 +112,12 @@ public class Weightlossprogram {
         this.description = description;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setEndDate(LocalDate startDate) {
+        this.endDate = startDate;
     }
 
     public int getDuration() {
@@ -136,11 +136,11 @@ public class Weightlossprogram {
         this.rating = rating;
     }
 
-    public byte[] getBackgroundImage() {
+    public String getBackgroundImage() {
         return backgroundImage;
     }
 
-    public void setBackgroundImage(byte[] backgroundImage) {
+    public void setBackgroundImage(String backgroundImage) {
         this.backgroundImage = backgroundImage;
     }
 
