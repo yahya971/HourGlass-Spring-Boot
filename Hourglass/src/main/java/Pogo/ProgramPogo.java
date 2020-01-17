@@ -6,7 +6,7 @@ import java.util.Date;
 public class ProgramPogo {
 	public ProgramPogo(String backgroundImage, String description, int duration, String objectifs, float rating,
 			LocalDate startingdate, String name, AudiancePogo audiance, NutritionalPogo[] nutritionalPrograms,
-			SportsPogo[] sportsPrograms) {
+			SportsPogo[] sportsPrograms, float price) {
 		super();
 		this.backgroundImage = backgroundImage;
 		this.description = description;
@@ -18,6 +18,7 @@ public class ProgramPogo {
 		this.audiance = audiance;
 		this.nutritionalPrograms = nutritionalPrograms;
 		this.sportsPrograms = sportsPrograms;
+		this.price = price;
 	}
 	public String  backgroundImage;
 	public String description;
@@ -29,5 +30,6 @@ public class ProgramPogo {
 	public AudiancePogo  audiance;
 	public NutritionalPogo[]  nutritionalPrograms;
 	public SportsPogo[]  sportsPrograms;
+	public float price;
 
 }

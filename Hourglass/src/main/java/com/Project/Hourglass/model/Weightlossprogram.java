@@ -15,11 +15,12 @@ public class Weightlossprogram {
 
 
     public Weightlossprogram( @NotNull String description, @NotNull LocalDate startDate, @NotNull int duration,
-			float rating, String backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance, @NotBlank String name) {
+			float rating, String backgroundImage, String objectifs, Client client, Coach coach, Audiance audiance,
+                              @NotBlank String name, float price) {
 		super();
 
 		this.description = description;
-		this.startDate = startDate;
+		this.endDate = startDate;
 		this.duration = duration;
 		this.rating = rating;
 		this.backgroundImage = backgroundImage;
@@ -28,6 +29,7 @@ public class Weightlossprogram {
 		this.coach = coach;
 		this.audiance = audiance;
 		this.name = name;
+		this.price = price;
 	}
 
 	@Id
@@ -41,8 +43,8 @@ public class Weightlossprogram {
     private String description;
 
     
-    @Column(name = "start_date", nullable = true)
-    private LocalDate startDate;
+    @Column(name = "end_date", nullable = true)
+    private LocalDate endDate;
 
     @NotNull
     @Column(name = "duration", nullable = false)
@@ -74,6 +76,8 @@ public class Weightlossprogram {
     
     @NotBlank
     private String name;
+
+    private float price;
     
     
     
@@ -85,7 +89,7 @@ public class Weightlossprogram {
         super();
         this.id = id;
         this.description = description;
-        this.startDate = startDate;
+        this.endDate = startDate;
         this.duration = duration;
         this.rating = rating;
         this.backgroundImage = backgroundImage;
@@ -112,12 +116,12 @@ public class Weightlossprogram {
         this.description = description;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setEndDate(LocalDate startDate) {
+        this.endDate = startDate;
     }
 
     public int getDuration() {
@@ -182,5 +186,13 @@ public class Weightlossprogram {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }

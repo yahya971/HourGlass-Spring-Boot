@@ -91,4 +91,9 @@ public class  SportsProgramController{
     public List<Sportsprogram> getAllDayPrograms(@PathVariable Long id) {
         return sportsprogramRepo.findSportsprogramByWeightlossprogramId(id);
     }
+
+	@GetMapping("/byWeightLossProgramAndDay/{id}/{day}")
+	public Sportsprogram getSportProgram(@PathVariable Long id, @PathVariable String day){
+		return sportsprogramRepo.findSportprogramByWeightLossProgramAndAndDay(id, day);
+	}
 }

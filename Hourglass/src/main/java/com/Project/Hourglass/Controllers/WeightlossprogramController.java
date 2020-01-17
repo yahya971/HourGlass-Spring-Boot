@@ -1,9 +1,7 @@
 package com.Project.Hourglass.Controllers;
 
-import org.apache.tomcat.util.json.JSONParser;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,6 +57,10 @@ public class WeightlossprogramController {
 	
 	
 	//lezemna f kol return n specifiw l objet li bech nraj3ouh
+	@GetMapping("")
+	public List<Weightlossprogram> getAllprogram(){
+		return wlpRepo.findAll();
+	}
 	@GetMapping("/{id}")
 	public Weightlossprogram getProgram(@PathVariable Long id) {
 		
@@ -73,13 +75,18 @@ public class WeightlossprogramController {
 	public Weightlossprogram getProgramByClientId(@PathVariable Long id){
 		return wlpRepo.findProgramByClientId(id);
 	}
+
+	@GetMapping("old/byClient/{id}")
+	public List<Weightlossprogram> getProgramsByClientId(@PathVariable Long id) {
+		return wlpRepo.findOldProgramsByClientId(id);
+	}
 	
 	@PostMapping("/{coachId}")
 	public String SaveProgram(@PathVariable Long coachId,@RequestBody ProgramPogo p) {
 		Client client=clientRepo.findById(Long.valueOf(999)).get();
 		Coach coach=coachRepo.findById(coachId).get();
 		Audiance audiance=new Audiance(p.audiance.sex,p.audiance.height,p.audiance.objectiveWeight,p.audiance.frame,p.audiance.fatStorage,p.audiance.silhouette,p.audiance.overWeightCause);
-		Weightlossprogram programToSave=new Weightlossprogram(p.description,LocalDate.now(),p.duration,p.rating,p.backgroundImage,p.objectifs,client,coach,audiance,p.name);
+		Weightlossprogram programToSave=new Weightlossprogram(p.description,LocalDate.now(),p.duration,p.rating,p.backgroundImage,p.objectifs,client,coach,audiance,p.name, p.price);
 		wlpRepo.save(programToSave);
 		Weightlossprogram wlp=wlpRepo.findByName(p.name).get();
 		for(NutritionalPogo np:p.nutritionalPrograms) {

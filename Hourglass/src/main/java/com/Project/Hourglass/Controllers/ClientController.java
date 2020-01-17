@@ -22,6 +22,12 @@ public class ClientController {
     public Client getClient(@PathVariable Long id){
         return clientRepo.findById(id).get();
     }
+
+    @GetMapping("/byUsername/{username}")
+    public Client getClientByUsername(@PathVariable String username) {
+        return clientRepo.findByUsername(username).get();
+    }
+
     @GetMapping("")
     public List<Client> getAllclient() {
         return clientRepo.findAll();
@@ -47,6 +53,11 @@ public class ClientController {
             client.setHeight(newclient.getHeight());
             client.setCurrentWeight(newclient.getCurrentWeight());
             client.setUsername(newclient.getUsername());
+            client.setFatDistribution(newclient.getFatDistribution());
+            client.setSilhouette(newclient.getSilhouette());
+            client.setFrame(client.getFrame());
+            client.setPassword(client.getPassword());
+            client.setDesiredWeight(client.getDesiredWeight());
             return clientRepo.save(client);
         }).orElseGet(() -> {
             newclient.setId(id);

@@ -80,6 +80,7 @@ public class  NutritionalProgramController{
     public List<Nutritionalprogram> getAllPrograms(@PathVariable Long id) {
         return nutProgramRepo.findNutritionalprogamByWeightlossprogramId(id);
     }
+
     
     
 	@PostMapping("/addNutritional/{wlpId}")
@@ -87,6 +88,10 @@ public class  NutritionalProgramController{
 		Weightlossprogram weightLossProgram=wlpRepo.findById(wlpId).get();
 		newNutritionalprogram.setWeightLossProgram(weightLossProgram);
 		return nutProgramRepo.save(newNutritionalprogram);
-		
+	}
+    @GetMapping("/byWeightLossProgramAndDay/{id}/{day}")
+	public Nutritionalprogram getNutritionalProgram(@PathVariable Long id, @PathVariable String day){
+		return nutProgramRepo.findNutritionalprogramByWeightLossProgramAndAndDay(id, day);
+
 	}
 }
