@@ -30,7 +30,7 @@ public class Coach extends User {
     private int age;
 
     @Lob
-    private byte[] photo;
+    private String photo;
 
     @NotNull
     private int experience;
@@ -48,7 +48,7 @@ public class Coach extends User {
                  @NotBlank @Size(min = 3, max = 50) String name, @NotBlank @Size(min = 3, max = 50) String lastname,
                  @NotBlank @Size(min = 6, max = 100) String password, @NotEmpty String resume,
                  float score1, float score2,float score3, float socre4, int age,
-                 byte[] photo,@NotEmpty int experience,@NotEmpty String speciality,@NotEmpty String phone ) {
+                 String photo,@NotEmpty int experience,@NotEmpty String speciality,@NotEmpty String phone ) {
 
         super(username, email, name, lastname, password);
         this.resume = resume;
@@ -113,11 +113,11 @@ public class Coach extends User {
         this.age = age;
     }
 
-    public byte[] getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
