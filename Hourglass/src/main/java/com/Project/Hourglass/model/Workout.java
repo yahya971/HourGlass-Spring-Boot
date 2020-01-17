@@ -15,7 +15,7 @@ import java.util.Set;
 public class Workout {
 
     public Workout(long id,String name, @NotNull LocalTime startingHour, @NotNull long duration, String description,
-			String equipment, Byte[] photo, float burnedCalories, Coach coach, Set<Sportsprogram> sportsPrograms) {
+			String equipment, String photo, float burnedCalories, Coach coach, Set<Sportsprogram> sportsPrograms) {
 		super();
 		this.id = id;
 		this.startingHour = startingHour;

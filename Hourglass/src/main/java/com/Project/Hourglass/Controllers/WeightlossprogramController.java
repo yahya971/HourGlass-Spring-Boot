@@ -22,6 +22,10 @@ public class WeightlossprogramController {
 	
 	
 	//lezemna f kol return n specifiw l objet li bech nraj3ouh
+	@GetMapping("")
+	public List<Weightlossprogram> getAllprogram(){
+		return wlpRepo.findAll();
+	}
 	@GetMapping("/{id}")
 	public Weightlossprogram getProgram(@PathVariable Long id) {
 		
