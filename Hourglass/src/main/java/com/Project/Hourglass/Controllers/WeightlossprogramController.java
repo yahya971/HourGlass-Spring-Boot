@@ -2,13 +2,7 @@ package com.Project.Hourglass.Controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.Project.Hourglass.Repositories.ClientRepository;
 import com.Project.Hourglass.Repositories.CoachRepository;
@@ -80,7 +74,18 @@ public class WeightlossprogramController {
 	public List<Weightlossprogram> getProgramsByClientId(@PathVariable Long id) {
 		return wlpRepo.findOldProgramsByClientId(id);
 	}
-	
+
+	@PutMapping("/rateProgram/{id}")
+	public Weightlossprogram rateProgram(@RequestBody Weightlossprogram newwlp, @PathVariable long id)
+	{
+		return wlpRepo.findById(id).map(program ->{
+				program.setRating(newwlp.getRating());
+				return wlpRepo.save(program);
+		}).orElseGet(() -> {
+			newwlp.setId(id);
+			return wlpRepo.save(newwlp);
+		});
+	}
 	@PostMapping("/{coachId}")
 	public String SaveProgram(@PathVariable Long coachId,@RequestBody ProgramPogo p) {
 		Client client=clientRepo.findById(Long.valueOf(999)).get();
@@ -111,5 +116,4 @@ public class WeightlossprogramController {
 		}
 		return "OK: "+coachId;
 	}
-
 }
