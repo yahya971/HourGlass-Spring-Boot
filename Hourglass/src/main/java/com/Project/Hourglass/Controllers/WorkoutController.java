@@ -38,7 +38,10 @@ public class  WorkoutController{
 		return workoutRepo.findByCoachId(id);
 		}
 	
-	
+	@GetMapping("/{id}/{coachId}")
+	public Workout getWorkoutByCoachId(@PathVariable Long id,@PathVariable Long coachId) {
+		return workoutRepo.findByIdAndCoachId(id, coachId);
+	}
 	@GetMapping("")
     public List<Workout> getAllMeals() {
         return workoutRepo.findAll();
@@ -65,6 +68,8 @@ public class  WorkoutController{
             workout.setDuration(newWorkout.getDuration());
             workout.setStartingHour(newWorkout.getStartingHour());
             workout.setEquipment(newWorkout.getEquipment());
+            workout.setName(newWorkout.getName());
+            
             
             return workoutRepo.save(workout);   
         }).orElseGet(() -> {
