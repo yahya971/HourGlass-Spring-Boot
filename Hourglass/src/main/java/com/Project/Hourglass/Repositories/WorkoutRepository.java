@@ -15,8 +15,7 @@ public interface WorkoutRepository extends JpaRepository<Workout,Long> {
 	public List<Workout> findByCoachId(Long id);
 
 	public Optional<Workout> findByName(String m);
+	
 
-    @Query("select w from Workout w where w.coach.id =?1 ")
-    List<Workout> findAllByCoachId(Long id);
 	public Workout findByIdAndCoachId(Long id, Long coachId);
 }

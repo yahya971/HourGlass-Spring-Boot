@@ -77,8 +77,4 @@ public class  WorkoutController{
             return workoutRepo.save(newWorkout);
         });
     }
-    @GetMapping("/byCoach/{id}")
-    public List<Workout> getMealsByCoachId( @PathVariable Long id) {
-        return  this.workoutRepo.findAllByCoachId(id);
-    }
 }
