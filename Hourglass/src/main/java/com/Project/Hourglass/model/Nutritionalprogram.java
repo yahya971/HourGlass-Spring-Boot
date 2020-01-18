@@ -36,7 +36,7 @@ public class Nutritionalprogram extends Dayprogram {
     }
 
     public Nutritionalprogram(@NotNull int mealsNumber, Set<Meal> meals,String day,String description,Weightlossprogram w,String name) {
-        super(day,description,name,w);
+        super(name,day,description,w);
         this.mealsNumber = mealsNumber;
         this.meals = meals;
     }
