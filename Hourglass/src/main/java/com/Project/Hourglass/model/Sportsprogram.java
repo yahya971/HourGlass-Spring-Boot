@@ -38,7 +38,7 @@ public class Sportsprogram extends Dayprogram {
     }
 
     public Sportsprogram(@NotNull String day, @NotNull String description,Set<Workout> workouts,Weightlossprogram w,String name) {
-        super(day, description,name,w);
+        super(name, day,description,w);
         this.workouts = workouts;
     }
 

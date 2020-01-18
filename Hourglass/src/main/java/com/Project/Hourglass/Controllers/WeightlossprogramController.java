@@ -126,22 +126,27 @@ public class WeightlossprogramController {
 		Weightlossprogram newProgram=new Weightlossprogram(program.getDescription(),LocalDate.now().plusDays(program.getDuration()),program.getDuration(),program.getRating(),program.getBackgroundImage(),program.getObjectifs(),null,program.getCoach(),program.getAudiance(),program.getName(),program.getPrice());
 		newProgram.setClient(client);
 		wlpRepo.save(newProgram);
-		program=wlpRepo.findProgramByClientId(clientId);
+		newProgram=wlpRepo.findProgramByClientId(clientId);
 		List<Nutritionalprogram> nutPrograms=nutRepo.findNutritionalprogamByWeightlossprogramId(programId);
 		List<Sportsprogram> sportsPrograms=sportRepo.findSportsprogramByWeightlossprogramId(programId);
+		System.out.println(programId + "kkkk"+ nutPrograms.size());
 
 		for(Nutritionalprogram p:nutPrograms) {
-			Nutritionalprogram newNut=new Nutritionalprogram(p.getMealsNumber(),p.getMeals(),p.getDay(),p.getDescription(),p.getWeightLossProgram(),p.getName());
+			Nutritionalprogram newNut=new Nutritionalprogram(p.getMealsNumber(),new HashSet<Meal>(p.getMeals()),LocalDate.now().plusDays(Integer.parseInt(p.getDay())).toString(),p.getDescription(),newProgram,p.getName());
 			newNut.setWeightLossProgram(newProgram);
 			
-			nutRepo.save(p);
-			
-		}
-		for(Sportsprogram p:sportsPrograms) {
-			Sportsprogram newSp=new Sportsprogram(p.getWorkouts(),p.getDay(),p.getDescription(),program,p.getName());
+			nutRepo.save(newNut);
+			//p.getMeals().forEach((x) -> {x.getNutritionalPrograms().add(newNut);
+			//mealRepo.save(x);
+			//});
+			}
 		
+		for(Sportsprogram p:sportsPrograms) {
+			Sportsprogram newSp=new Sportsprogram(LocalDate.now().plusDays(Integer.parseInt(p.getDay())).toString(),p.getDescription(),new HashSet<Workout>(p.getWorkouts()),newProgram,p.getName());
+			System.out.println(newSp.getDay());
+			System.out.println(p.getDay());
 			
-			sportRepo.save(p);
+			sportRepo.save(newSp);
 			
 		}
 		return program;

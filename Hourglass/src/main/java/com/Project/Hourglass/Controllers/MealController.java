@@ -47,7 +47,7 @@ public class  MealController{
     @PostMapping("/addMeal/{coachId}")
     public Meal createOrSaveMeal(@RequestBody Meal newMeal,@PathVariable int coachId) {
     	System.out.println("coach id"+coachId);
-    	Coach coach=coachRepo.findById((long) 1).get();
+    	Coach coach=coachRepo.findById((long) coachId).get();
     	newMeal.setCoach(coach);
         return mealRepo.save(newMeal);
     }
